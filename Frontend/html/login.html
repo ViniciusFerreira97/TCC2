@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt-BR">
+    <title>iVision</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="manifest" href="/manifest.webmanifest"/>
+    <link rel="icon" type="image/png" href="/assets/images/logo/oOriginal.png"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PWA">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/logo/ios/72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/logo/ios/144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/ios/152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/ios/180x180.png">
+    <!-- MDB Itens -->
+    <link href="/mdb/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/mdb/css/mdb.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+<body>
+
+<div class="text-center mt-5">
+    <img src="/assets/images/logo/iVisionLogo.png" class="img-fluid w-50" alt="Logo Aplicativo (iVision)">
+</div>
+
+<section class="view" id="loginView">
+    <div class="text-center mt-5">
+        <h3 class="text-bold">Entrar no iVision</h3>
+    </div>
+    <div class="text-center ml-2 mr-2 p-3">
+        <div class="md-form">
+            <input type="text" id="loginText" class="form-control">
+            <label for="loginText">Login</label>
+        </div>
+    </div>
+    <div class="text-center ml-2 mr-2 p-3">
+        <div class="md-form">
+            <input type="text" id="senhaText" class="form-control">
+            <label for="senhaText">Senha</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col p-4">
+            <button type="button" class="btn btn-lg pink accent-1 white-text w-100">Entrar</button>
+        </div>
+    </div>
+    <div class="row pr-3 pl-5">
+        <div class="col">
+            <a href="#">Esqueceu a senha?</a>
+        </div>
+        <div class="col">
+            <a href="#" id="cadastrarLink">Cadastrar-se</a>
+        </div>
+    </div>
+</section>
+
+<section class="view" id="cadastroView">
+
+</section>
+
+</body>
+
+<!-- MDB itens -->
+<script type="text/javascript" src="/mdb/js/jquery.min.js"></script>
+<script type="text/javascript" src="/mdb/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/mdb/js/mdb.min.js"></script>
+<script type="text/javascript" src="/mdb/js/popper.min.js"></script>
+
+<script src="../js/worker_register.js"></script>
+<script type="module" src="/js/main.js"></script>
+</html>
