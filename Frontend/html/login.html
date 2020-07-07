@@ -18,7 +18,7 @@
     <link href="/mdb/css/mdb.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/login.css">
-
+    <link rel="stylesheet" href="../css/geral.css">
 </head>
 
 <body>
@@ -27,39 +27,106 @@
     <img src="/assets/images/logo/iVisionLogo.png" class="img-fluid w-50" alt="Logo Aplicativo (iVision)">
 </div>
 
-<section class="view" id="loginView">
-    <div class="text-center mt-5">
-        <h3 class="text-bold">Entrar no iVision</h3>
-    </div>
-    <div class="text-center ml-2 mr-2 p-3">
-        <div class="md-form">
-            <input type="text" id="loginText" class="form-control">
-            <label for="loginText">Login</label>
+<section class="view d-none" id="loginView">
+    <div class="formContent">
+        <div class="text-center mt-5">
+            <h3 class="text-bold">Entrar no iVision</h3>
         </div>
-    </div>
-    <div class="text-center ml-2 mr-2 p-3">
-        <div class="md-form">
-            <input type="text" id="senhaText" class="form-control">
-            <label for="senhaText">Senha</label>
+        <div class="text-center ml-2 mr-2 pr-3 pl-3">
+            <div class="md-form">
+                <input type="text" id="loginText" class="form-control">
+                <label for="loginText">E-mail</label>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col p-4">
-            <button type="button" class="btn btn-lg pink accent-1 white-text w-100">Entrar</button>
+        <div class="text-center ml-2 mr-2 pr-3 pl-3">
+            <div class="md-form">
+                <input type="text" id="senhaText" class="form-control">
+                <label for="senhaText">Senha</label>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col p-4 mr-3 ml-1">
+                <button id="btnEntrar" type="button" class="btn btn-lg pink accent-1 white-text w-100">Entrar</button>
+            </div>
         </div>
     </div>
     <div class="row pr-3 pl-5">
         <div class="col">
-            <a href="#">Esqueceu a senha?</a>
+            <a href="#" id="esqueciSenhaLink">Esqueceu a senha?</a>
         </div>
         <div class="col">
             <a href="#" id="cadastrarLink">Cadastrar-se</a>
         </div>
     </div>
+    <div class="blinderItem" id="loginViewBlinder">
+        <item name="E-mail" callback="insert" value="{{talk}}" target="#loginText"/>
+        <item name="Senha" callback="insert" value="{{talk}}" target="#senhaText"/>
+        <item name="Entrar" callback="click" target="#btnEntrar"/>
+    </div>
 </section>
 
-<section class="view" id="cadastroView">
+<section class="view d-none" id="cadastroView">
+    <div class="formContent">
+        <div class="text-center mt-5">
+            <h3 class="text-bold">Recuperar senha</h3>
+        </div>
+        <div class="text-center ml-2 mr-2 pr-3 pl-3">
+            <div class="md-form">
+                <input type="text" id="loginCadastro" class="form-control">
+                <label for="loginCadastro">E-mail</label>
+            </div>
+        </div>
+        <div class="text-center ml-2 mr-2 pr-3 pl-3">
+            <div class="md-form">
+                <input type="text" id="senhaCadastro" class="form-control">
+                <label for="senhaCadastro">Senha</label>
+            </div>
+        </div>
+        <div class="text-center ml-2 mr-2 pr-3 pl-3">
+            <div class="md-form">
+                <input type="text" id="nomeCadastro" class="form-control">
+                <label for="nomeCadastro">Nome</label>
+            </div>
+        </div>
+        <div class="text-center ml-2 mr-2 pr-3 pl-3">
+            <select class="browser-default custom-select">
+                <option value="0" disabled>Selecione o tipo de usuário</option>
+                <option value="1">Aluno</option>
+                <option value="2">Professor</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-5 ml-4">
+        <div class="col-5 text-center">
+            <button type="button" class="btn light-blue white-text linkVoltarLogin">Voltar</button>
+        </div>
+        <div class="col-5 text-center">
+            <button type="button" class="btn pink accent-1 white-text">Entrar</button>
+        </div>
+    </div>
+</section>
 
+<section class="view d-none" id="esqueciView">
+    <div class="formContent">
+        <div class="text-center mt-5">
+            <h3 class="text-bold">Cadastrar-se</h3>
+        </div>
+        <div class="text-center ml-2 mr-2 pr-3 pl-3">
+            <div class="md-form">
+                <input type="text" id="loginEsqueci" class="form-control">
+                <label for="loginEsqueci">E-mail</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 ml-4">
+        <div class="col-5 text-center">
+            <button type="button" class="btn light-blue white-text linkVoltarLogin">Voltar</button>
+        </div>
+        <div class="col-5 text-center">
+            <button type="button" class="btn pink accent-1 white-text">Recuperar</button>
+        </div>
+    </div>
 </section>
 
 </body>
@@ -69,7 +136,8 @@
 <script type="text/javascript" src="/mdb/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/mdb/js/mdb.min.js"></script>
 <script type="text/javascript" src="/mdb/js/popper.min.js"></script>
+<script src="https://kit.fontawesome.com/7d3e7301a3.js" crossorigin="anonymous"></script>
 
-<script src="../js/worker_register.js"></script>
+<script src="/js/worker_register.js"></script>
 <script type="module" src="/js/main.js"></script>
 </html>

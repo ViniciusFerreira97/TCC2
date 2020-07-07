@@ -1,3 +1,5 @@
+import Visible from './visible.js';
+
 export default class view  {
 
     static identifier = 'section.view';
@@ -10,14 +12,13 @@ export default class view  {
             for(let i in exception){
                 query.not('#'+exception[i]);
             }
-            query.hide();
+            Visible.retain(query);
         }
         return view;
     }
 
     static load(id){
-        if($('#'+id).is(':visible') < 0)
-            $('#'+id).fadeIn();
+        Visible.load(id);
         return view;
     }
 

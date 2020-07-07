@@ -4,3 +4,7 @@ body{
     background-attachment: initial;
     background-position: center;
 }
+
+.formContent{
+    background-color: white;
+}
