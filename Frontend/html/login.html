@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="PWA">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/logo/ios/72x72.png">
     <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/logo/ios/144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/ios/152x152.png">
@@ -89,7 +90,7 @@
             </div>
         </div>
         <div class="text-center ml-2 mr-2 pr-3 pl-3">
-            <select class="browser-default custom-select">
+            <select id="selectTipoUsuario" class="browser-default custom-select">
                 <option value="0" disabled>Selecione o tipo de usuário</option>
                 <option value="1">Aluno</option>
                 <option value="2">Professor</option>
@@ -101,7 +102,7 @@
             <button type="button" class="btn light-blue white-text linkVoltarLogin">Voltar</button>
         </div>
         <div class="col-5 text-center">
-            <button type="button" class="btn pink accent-1 white-text">Entrar</button>
+            <button type="button" id="btnCadastrarUsuario" class="btn pink accent-1 white-text">Cadastrar</button>
         </div>
     </div>
 </section>
@@ -140,4 +141,5 @@
 
 <script src="/js/worker_register.js"></script>
 <script type="module" src="/js/main.js"></script>
+<script type="module" src="/js/login.js"></script>
 </html>

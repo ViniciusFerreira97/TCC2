@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\TipoCompromisso;
 use Log;
-use Auth;
-use App\Http\Controllers\ResponseController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Usuarios;
+use Hash;
 
 
 class UsuariosController extends Controller
@@ -26,8 +30,8 @@ class UsuariosController extends Controller
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
             }
-            $usuario = new Usuario;
-            $usuario->nome = $request->nomeUsuario;
+            $usuario = new Usuarios;
+            $usuario->nm_usuario = $request->nomeUsuario;
             $usuario->email = $request->emailUsuario;
             $usuario->senha = Hash::make($request->senhaUsuario);
             $usuario->cd_tipo_usuario = $request->codigoTipoUsuario;
@@ -52,7 +56,7 @@ class UsuariosController extends Controller
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
             }
-            $usuario = Usuario::find($request->codigoUsuario);
+            $usuario = Usuarios::find($request->codigoUsuario);
             $usuario->nome = $request->nomeUsuario;
             if($request->senhaUsuario != null && $request->senhaUsuario != ''){
                 $usuario->senha = Hash::make($request->senhaUsuario);
@@ -81,18 +85,18 @@ class UsuariosController extends Controller
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
             }
 
-            $usuario = Usuario::where('email', $email)->first();
+            $usuario = Usuarios::where('email', $email)->first();
             if (is_null($usuario)) {
                 return app(ResponseController::class)->retornaJson(404, 'Email e/ou senha inválido.', null);
             }
             if (Hash::check($senha, $usuario->senha)  != true) {
                 return app(ResponseController::class)->retornaJson(404, 'Email e/ou senha inválido.', null);
             }
-            Auth::login($usuario, true);
+            // Auth::login($usuario);
             //Implementar Session PUT
             $dados = [];
-            $dados['codigoUsuario'] = Auth::user()->cd_usuario;
-            $dados['nomeUsuario'] = Auth::user()->nome;
+            $dados['codigoUsuario'] = $usuario->cd_usuario;
+            $dados['nomeUsuario'] = $usuario->nome;
             return app(ResponseController::class)->retornaJson(200, $dados, null);
         } catch (\Throwable $th) {
             Log::error($th);
