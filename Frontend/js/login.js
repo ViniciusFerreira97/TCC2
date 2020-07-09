@@ -1,36 +1,49 @@
-$(document).ready(function () {
-   $('#btnCadastrarUsuario').on('click', function(){
-      let email = $('#loginCadastro').val();
-      let senha = $('#senhaCadastro').val();
-      let nome = $('#nomeCadastro').val();
-      let tipoUsuario = $('#selectTipoUsuario option:selected').val();
-      var baseUrl = 'http://localhost:8000/api/usuario/criar';
-      $.ajax({
-          type: "POST",
-          url: baseUrl,
-          data: {'emailUsuario': email, 'senhaUsuario': senha, 'nomeUsuario':nome, 'codigoTipoUsuario': tipoUsuario},
-          success: function (data) {
-             console.log(data);
-          }
-      });
-   });
+import Ajax from "./modules/ajax.js";
+import View from "./modules/view.js";
+import Eloquent from "./modules/blinder/eloquent.js";
+import Blinder from "./modules/blinder/blinder.js";
 
-   $('#btnEntrar').on('click', function(){
-      let email = $('#loginText').val();
-      let senha = $('#senhaText').val();
-      var baseUrl = 'http://localhost:8000/api/login';
-      $.ajax({
-          type: "POST",
-          url: baseUrl,
-          data: {'email': email, 'senha': senha},
-          success: function (data) {
-             if(data.codigo === 200)
-             {
-                alert('LOGADOOOOOO');
-             }
-          }
-      });
-   });
+$(document).ready(function () {
+
+    Blinder.handle();
+
+    View.load('loginView');
+
+    $('#cadastrarLink').on('click',function(){
+        View.tradeView('cadastroView');
+    });
+
+    $('#esqueciSenhaLink').on('click',function(){
+        View.tradeView('esqueciView');
+    });
+
+    $('.linkVoltarLogin').on('click',function(){
+        View.tradeView('loginView');
+    });
+
+    $('#btnCadastrarUsuario').on('click', function () {
+        let attributes = {
+            'emailUsuario': $('#loginCadastro').val(),
+            'senhaUsuario': $('#senhaCadastro').val(),
+            'nomeUsuario': $('#nomeCadastro').val(),
+            'codigoTipoUsuario': $('#selectTipoUsuario option:selected').val(),
+        };
+        Ajax.setAttributes(attributes).setUrl('usuario/criar').send(function (data) {
+            console.log(Ajax.emailUsuario);
+        });
+    });
+
+    $('#btnEntrar').on('click', function () {
+        let attributes = {
+            'email': $('#loginText').val(),
+            'senha': $('#senhaText').val(),
+        };
+        Ajax.setAttributes(attributes).setUrl('login').send(function(data){
+            if (data.codigo === 200) {
+                Eloquent.speakText('Seu login foi validado. Entrando no sistema.');
+            }
+        });
+    });
 })
 
 

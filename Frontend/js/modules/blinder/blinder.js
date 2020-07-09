@@ -1,8 +1,11 @@
 import Keeper from "./blinderKeeper.js";
+import Eloquent from "./eloquent.js";
 
 export default class blinder  {
 
     static tagClass = 'blinderItem';
+    static accessibility = false;
+    static enabled = false;
 
     static blinderActions = [
         'click', 'insert','message'
@@ -75,4 +78,22 @@ export default class blinder  {
             return $(element).find('.'+blinder.tagClass);
     }
 
+    static handle(){
+        let callback = function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if(Eloquent.listenning){
+                Eloquent.stopListenning(function (text) {
+                    alert(text);
+                });
+            }else{
+                Eloquent.startListenning();
+            }
+        }
+        if(blinder.accessibility && !enabled){
+            document.addEventListener("click",callback,true);
+        }else if(!blinder.accessibility){
+            document.removeEventListener('click',callback,true);
+        }
+    }
 }
