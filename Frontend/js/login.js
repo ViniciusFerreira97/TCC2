@@ -4,7 +4,6 @@ import Eloquent from "./modules/blinder/eloquent.js";
 import Blinder from "./modules/blinder/blinder.js";
 
 $(document).ready(function () {
-
     Blinder.handle();
 
     View.load('loginView');
@@ -29,6 +28,7 @@ $(document).ready(function () {
             'codigoTipoUsuario': $('#selectTipoUsuario option:selected').val(),
         };
         Ajax.setAttributes(attributes).setUrl('usuario/criar').send(function (data) {
+            alert(teste);
             console.log(Ajax.emailUsuario);
         });
     });
@@ -39,9 +39,7 @@ $(document).ready(function () {
             'senha': $('#senhaText').val(),
         };
         Ajax.setAttributes(attributes).setUrl('login').send(function(data){
-            if (data.codigo === 200) {
-                Eloquent.speakText('Seu login foi validado. Entrando no sistema.');
-            }
+            Eloquent.speakText('Seu login foi validado. Entrando no sistema.');
         });
     });
 })
