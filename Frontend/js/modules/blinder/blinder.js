@@ -5,7 +5,7 @@ import eloquent from "./eloquent.js";
 export default class blinder {
 
     static tagClass = 'blinderItem';
-    static accessibility = true;
+    static accessibility = false;
     static enabled = false;
 
     static blinderActions = [

@@ -93,7 +93,7 @@ class UsuariosController extends Controller
                 return app(ResponseController::class)->retornaJson(404, 'Email e/ou senha inválido.', null);
             }
             // Auth::login($usuario);
-            //Implementar Session PUT
+            // Implementar Session PUT
             $dados = [];
             $dados['codigoUsuario'] = $usuario->cd_usuario;
             $dados['nomeUsuario'] = $usuario->nome;
