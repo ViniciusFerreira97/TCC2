@@ -2,20 +2,19 @@ export default class eloquent {
 
     static lang = 'pt-BR';
     static listenning = false;
+    static listenningHistoric = [];
 
     static loadRecognition() {
         var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
         return new SpeechRecognition();
     }
 
-    static startListenning(callback) {
+    static startListenning() {
         eloquent.recognition = eloquent.loadRecognition();
         eloquent.recognition.lang = eloquent.lang;
-        eloquent.recognition.interimResults = true;
-        eloquent.recognition.continuous = true;
+        eloquent.recognition.interimResults = false;
+        eloquent.recognition.continuous = false;
         eloquent.recognition.maxAlternatives = 1;
-        eloquent.recognition.EXTRA_MAX_RESULTS = 1;
-        eloquent.whileCallback = callback;
         eloquent.recognition.start();
         eloquent.listenning = true;
         return eloquent;
@@ -26,19 +25,11 @@ export default class eloquent {
         eloquent.listenning = false;
         eloquent.callback = callback;
 
-        if (eloquent.whileCallback != undefined) {
-            eloquent.recognition.onresult = function (event) {
-                let text = event.results[0][0].transcript;
-                eloquent.whileCallback(text, event);
-            };
-        }
-
         if (eloquent.callback != undefined) {
             eloquent.recognition.onresult = function (event) {
                 let text = event.results[0][0].transcript;
-                if (event.results.isFinal) {
-                    eloquent.callback(text, event);
-                }
+                eloquent.listenningHistoric.push(text);
+                eloquent.callback(text, event);
             };
         }
         return eloquent;
