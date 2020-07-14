@@ -2,12 +2,12 @@ import Ajax from "./modules/ajax.js";
 import View from "./modules/view.js";
 import Eloquent from "./modules/blinder/eloquent.js";
 import Blinder from "./modules/blinder/blinder.js";
-import blinder from "./modules/blinder/blinder.js";
+import visible from "./modules/visible.js";
 
 $(document).ready(function () {
     Blinder.handle();
 
-    View.load('loginView');
+    View.tradeView('loginView');
 
     $('#cadastrarLink').on('click',function(){
         View.tradeView('cadastroView');
@@ -29,8 +29,7 @@ $(document).ready(function () {
             'codigoTipoUsuario': $('#selectTipoUsuario option:selected').val(),
         };
         Ajax.setAttributes(attributes).setUrl('usuario/criar').send(function (data) {
-            alert(teste);
-            console.log(Ajax.emailUsuario);
+            visible.comunicate(data);
         });
     });
 

@@ -1,4 +1,5 @@
 import blinder from "./blinder/blinder.js";
+import eloquent from "./blinder/eloquent.js";
 
 export default class visible  {
 
@@ -39,6 +40,18 @@ export default class visible  {
         blinder.eraseComponent(elementToErase);
 
         return visible;
+    }
+
+    static comunicate(mensage,type = 'success'){
+        if(blinder.accessibility){
+            eloquent.speakText(mensage);
+        }else{
+            $('#alert-'+type+' .modal-body').html(mensage);
+            $('#alert-'+type).modal('show');
+            setTimeout(function(){
+                $('#alert-'+type).modal('hide');
+            },1500);
+        }
     }
 
 }

@@ -39,7 +39,7 @@ export default class ajax  {
             if(response.codigo === 200)
                 callback(response.mensagem);
             else{
-
+                console.log(response);
             }
             if(ajax.clear){
                 for(let i in ajax.virtualAttributes)
