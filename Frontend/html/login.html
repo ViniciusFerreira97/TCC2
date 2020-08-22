@@ -41,7 +41,7 @@
         </div>
         <div class="text-center ml-2 mr-2 pr-3 pl-3">
             <div class="md-form">
-                <input type="text" id="senhaText" class="form-control">
+                <input type="password" id="senhaText" class="form-control">
                 <label for="senhaText">Senha</label>
             </div>
         </div>
@@ -60,11 +60,11 @@
         </div>
     </div>
     <div class="blinderItem" id="loginViewBlinder">
-        <item name="E-mail" callback="insert" value="{{talk}}" target="#loginText"/>
-        <item name="Senha" callback="insert" value="{{talk}}" target="#senhaText"/>
-        <item name="Entrar" callback="click" target="#btnEntrar"/>
-        <item name="Esqueceu a senha?" callback="click" target="#esqueciSenhaLink"/>
-        <item name="Cadastrar-se" callback="click" target="#cadastrarLink"/>
+        <item name="E-mail" action="insert" value="{{talk}}" target="#loginText"/>
+        <item name="Senha" action="insert" value="{{talk}}" target="#senhaText"/>
+        <item name="Entrar" action="click" target="#btnEntrar"/>
+        <item name="Esqueci minha senha" action="click" target="#esqueciSenhaLink" talk="Menu de Esqueci minha senha disponível."/>
+        <item name="Cadastrar-me" action="click" target="#cadastrarLink" synonym="Cadastrar"/>
     </div>
 </section>
 
@@ -81,7 +81,7 @@
         </div>
         <div class="text-center ml-2 mr-2 pr-3 pl-3">
             <div class="md-form">
-                <input type="text" id="senhaCadastro" class="form-control">
+                <input type="password" id="senhaCadastro" class="form-control">
                 <label for="senhaCadastro">Senha</label>
             </div>
         </div>
@@ -107,6 +107,15 @@
             <button type="button" id="btnCadastrarUsuario" class="btn pink accent-1 white-text">Cadastrar</button>
         </div>
     </div>
+    <div class="blinderItem" id="cadastroViewBlinder">
+        <item name="E-mail" action="insert" value="{{talk}}" target="#loginCadastro"/>
+        <item name="Senha" action="insert" value="{{talk}}" target="#senhaCadastro"/>
+        <item name="Nome" action="insert" value="{{talk}}" target="#nomeCadastro"/>
+        <item name="Tipo de usuário" action="insert" value="{{talk}}" target="#selectTipoUsuario"
+                alt="Valores disponíveis: Aluno e Professor."/>
+        <item name="Voltar" action="click" target=".linkVoltarLogin" talk="Menu de Login disponível."/>
+        <item name="Cadastrar" action="click" target="#btnCadastrarUsuario"/>
+    </div>
 </section>
 
 <section class="view d-none" id="esqueciView">
@@ -127,14 +136,30 @@
             <button type="button" class="btn light-blue white-text linkVoltarLogin">Voltar</button>
         </div>
         <div class="col-5 text-center">
-            <button type="button" class="btn pink accent-1 white-text">Recuperar</button>
+            <button id="btnRecuperarSenha" type="button" class="btn pink accent-1 white-text">Recuperar</button>
         </div>
+    </div>
+
+    <div class="blinderItem" id="esqueciViewBlinder">
+        <item name="E-mail" action="insert" value="{{talk}}" target="#loginEsqueci"/>
+        <item name="Voltar" action="click" target=".linkVoltarLogin" talk="Menu de Login disponível."/>
+        <item name="Cadastrar" action="click" target="#btnRecuperarSenha"/>
     </div>
 </section>
 
 </body>
 
-<!-- MDB itens -->
+<div class="modal fade top" id="alert-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-top" role="document">
+        <div class="modal-content success-color text-white">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript" src="/mdb/js/jquery.min.js"></script>
 <script type="text/javascript" src="/mdb/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/mdb/js/mdb.min.js"></script>
