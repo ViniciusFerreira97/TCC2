@@ -13,6 +13,18 @@ $(document).ready(function () {
     $('#novaAtividade').on('click',function(){
         View.tradeView('viewNovaAtividade');
     });
+
+    $('#cadastrarAtividade').on('click', function () {
+        let attributes = {
+            'emailUsuario': $('#inputTitulo').val(),
+            'senhaUsuario': $('#inputDescricao').val(),
+        };
+        Ajax.setAttributes(attributes).setUrl('atividade/criar').send(function (data) {
+            alert(teste);
+            console.log(Ajax.emailUsuario);
+        });
+    });
+
 })
 
 

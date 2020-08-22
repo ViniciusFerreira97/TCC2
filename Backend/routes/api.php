@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/usuario/criar',  'UsuariosController@cadastrarUsuario');
 Route::post('/usuario/editar',  'UsuariosController@editarUsuario');
-Route::post('/login',  'UsuariosController@login');
+Route::post('/login',  'Auth\UsuariosController@login');
 Route::post('/atividade/criar',  'AtividadesController@cadastrarAtividade');
 Route::get('/atividade/listar',  'AtividadesController@editarAtividade');
 Route::post('/atividade/editar',  'AtividadesController@apagarAtividade');

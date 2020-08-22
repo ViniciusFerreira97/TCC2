@@ -304,6 +304,7 @@ class AuthManager implements FactoryContract
      */
     public function __call($method, $parameters)
     {
+        dd($parameters);
         return $this->guard()->{$method}(...$parameters);
     }
 }
