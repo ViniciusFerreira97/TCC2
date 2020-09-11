@@ -36,19 +36,27 @@ export default class eloquent {
     }
 
     static speak(text) {
-        let speaking = new SpeechSynthesisUtterance(text);
+        let speakable = eloquent.stripHtml(text);
+        let speaking = new SpeechSynthesisUtterance(speakable);
         speaking.lang = eloquent.lang;
         speechSynthesis.speak(speaking);
         return eloquent;
     }
 
-    static speakText(text) {
+    static speakText(text, delay = 500) {
         let splitedText = text.split('.');
         for (let i in splitedText) {
             setTimeout(function () {
                 eloquent.speak(splitedText[i]);
-            }, 500);
+            }, delay);
         }
         return eloquent;
+    }
+
+    static stripHtml(html)
+    {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
     }
 }

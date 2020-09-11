@@ -107,6 +107,13 @@
             <button type="button" id="btnCadastrarUsuario" class="btn pink accent-1 white-text">Cadastrar</button>
         </div>
     </div>
+
+    <div class="row p-5">
+        <div class="col d-none danger-color text-white p-3 rounded" id="errorCadastrar">
+
+        </div>
+    </div>
+
     <div class="blinderItem" id="cadastroViewBlinder">
         <item name="E-mail" action="insert" value="{{talk}}" target="#loginCadastro"/>
         <item name="Senha" action="insert" value="{{talk}}" target="#senhaCadastro"/>
@@ -121,7 +128,7 @@
 <section class="view d-none" id="esqueciView">
     <div class="formContent">
         <div class="text-center mt-5">
-            <h3 class="text-bold">Cadastrar-se</h3>
+            <h3 class="text-bold">Esqueci minha senha</h3>
         </div>
         <div class="text-center ml-2 mr-2 pr-3 pl-3">
             <div class="md-form">
@@ -153,6 +160,17 @@
      aria-hidden="true">
     <div class="modal-dialog modal-full-height modal-top" role="document">
         <div class="modal-content success-color text-white">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade top" id="alert-error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-top" role="document">
+        <div class="modal-content danger-color text-white">
             <div class="modal-body">
 
             </div>

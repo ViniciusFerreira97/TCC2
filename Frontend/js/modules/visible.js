@@ -46,11 +46,19 @@ export default class visible  {
         if(blinder.accessibility){
             eloquent.speakText(mensage);
         }else{
-            $('#alert-'+type+' .modal-body').html(mensage);
-            $('#alert-'+type).modal('show');
-            setTimeout(function(){
-                $('#alert-'+type).modal('hide');
-            },1500);
+            switch (type){
+                case 'success':
+                case 'error':
+                    $('#alert-'+type+' .modal-body').html(mensage);
+                    $('#alert-'+type).modal('show');
+                    setTimeout(function(){
+                        $('#alert-'+type).modal('hide');
+                    },1500);
+                    break;
+                default:
+                    $(type).html(mensage).removeClass(visible.classHide).fadeIn();
+                    break;
+            }
         }
     }
 
