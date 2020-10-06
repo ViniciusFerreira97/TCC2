@@ -58,7 +58,7 @@ export default class ajax {
         const selfJs = this;
         $.ajax({
             type: "POST",
-            url: this.url,
+            url: this.url+'?XDEBUG_SESSION_START=PHPSTORM',
             data: {
                 'params': params,
             },

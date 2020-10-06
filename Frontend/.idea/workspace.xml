@@ -20,18 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c054bc51-32e0-4dac-8a59-8b8dfbc1daa7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/app/Http/Controllers/Auth/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/app/Http/Controllers/Auth/UsuariosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/modules/ajax.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/modules/blinder/eloquent.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modules/blinder/eloquent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/modules/visible.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modules/visible.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/modules/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modules/ajax.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -48,12 +58,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/js/modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/js/modules" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/Aluno" />
+      <recent name="$PROJECT_DIR$/js/Aluno/main" />
+      <recent name="$PROJECT_DIR$/html/Aluno" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -64,7 +80,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599857423641</updated>
-      <workItem from="1599857424721" duration="6904000" />
+      <workItem from="1599857424721" duration="6907000" />
+      <workItem from="1600081466450" duration="45000" />
+      <workItem from="1600127228176" duration="2243000" />
+      <workItem from="1600167600661" duration="624000" />
+      <workItem from="1600188282754" duration="24000" />
+      <workItem from="1601134692632" duration="12278000" />
+      <workItem from="1601209823321" duration="28000" />
+      <workItem from="1601737882752" duration="10525000" />
+      <workItem from="1601814101402" duration="1359000" />
+      <workItem from="1601897045849" duration="18000" />
+      <workItem from="1602020793976" duration="1816000" />
     </task>
     <servers />
   </component>
@@ -81,11 +107,24 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="148" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599858094377">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="416" y="148" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.30.1366.738@0.30.1366.738" timestamp="1599858094377" />
+    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl" timestamp="1601897062572">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1601897062572" />
+    <state x="391" y="143" width="583" height="512" key="find.popup" timestamp="1601743168283">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="391" y="143" width="583" height="512" key="find.popup/0.30.1366.738@0.30.1366.738" timestamp="1601743168283" />
+    <state x="347" y="176" key="run.anything.popup" timestamp="1601141990896">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="347" y="176" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1601141990896" />
   </component>
 </project>

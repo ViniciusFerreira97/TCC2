@@ -1,0 +1,16 @@
+.logoTop{
+    max-width: 10%;
+}
+
+nav{
+    background-color: #65d8d8;
+    color: white;
+}
+
+nav div.col{
+    padding: 3%;
+}
+
+nav .active {
+    background-color: #4d9e9e;
+}

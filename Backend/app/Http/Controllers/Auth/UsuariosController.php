@@ -53,7 +53,7 @@ class UsuariosController extends Controller
             ])->setAttributeNames([
                 'codigoUsuario' => 'Código Usuário',
                 'nomeUsuario' => 'Nome do Usuário',
-                'senhaUsuario' => 'Senha do Usuário'                
+                'senhaUsuario' => 'Senha do Usuário'
             ]);
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);

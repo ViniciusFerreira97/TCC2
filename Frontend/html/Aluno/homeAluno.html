@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt-BR">
+    <title>iVision</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="manifest" href="/manifest.webmanifest"/>
+    <link rel="icon" type="image/png" href="/assets/images/logo/oOriginal.png"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PWA">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/logo/ios/72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/logo/ios/144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/ios/152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/ios/180x180.png">
+    <!-- MDB Itens -->
+    <link href="/mdb/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/mdb/css/mdb.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/geral.css">
+    <link rel="stylesheet" href="../../css/Aluno/mainMenu.css">
+</head>
+
+<body>
+<nav class="fixed-bottom">
+    <div class="row text-center">
+        <div class="col">
+            <a href="#" class="white-text" id="tradeHome">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" class="white-text" id="tradeAtividade">
+                <i class="fas fa-tasks"></i>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" class="white-text" id="tradeProcurar">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" class="white-text" id="tradeUser">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="mb-2 mt-2 text-center p-2">
+    <img src="/assets/images/logo/oMaior.png" class="logoTop">
+</div>
+<hr>
+<main class="text-center mt-5">
+    <section class="d-none view" id="homeView">
+        <div>
+            <h3>
+                Olá, user
+            </h3>
+        </div>
+        <div>
+            <h4>O que faremos hoje ?</h4>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <section>
+            <div class="row p-3 font-weight-bold">
+                <div class="col">
+                <span class="p-2 rounded rgba-grey-slight mr-3">
+                    <i class="fas fa-search"></i>
+                </span>
+                    Procurar Atividade
+                </div>
+            </div>
+            <hr>
+            <div class="row p-3 font-weight-bold">
+                <div class="col">
+                <span class="p-2 rounded rgba-grey-slight mr-3">
+                    <i class="fas fa-list"></i>
+                </span>
+                    Histórico de atividades
+                </div>
+            </div>
+            <hr>
+        </section>
+    </section>
+    <section class="h-100 view d-none" id="atividadesView">
+        <div>
+            <h4>Sua lista de atividades</h4>
+        </div>
+    </section>
+    <section class="h-100 view" id="procurarView">
+        <h3>
+            Qual tarefa iremos realizar ?
+        </h3>
+        <div class="d-flex justify-content-center mt-5">
+            <input type="text" id="codigoTarefaTxt" class="form-control w-75" placeholder="Insira o código da tarefa">
+        </div>
+        <button type="button" class="btn light-blue white-text mt-3">Pesquisar</button>
+        <div class="d-flex justify-content-center mt-5">
+            <section class="w-75 border rounded p-4">
+                <h5 class="m-2">
+                    Criador da Tarefa <span></span>
+                </h5>
+                <h5 class="m-2">
+                    Data de Expiração <span></span>
+                </h5>
+            </section>
+        </div>
+        <button type="button" class="btn btn-pink mt-5">Adicionar Tarefa</button>
+    </section>
+    <section class="h-100 d-none view" id="userView">
+        <div>
+            <i class="fas fa-user-circle fa-4x"></i>
+        </div>
+        <h4 class="mt-3">
+            User
+        </h4>
+        <div class="align-text-bottom">
+            <button type="button" class="btn btn-pink">Sair</button>
+        </div>
+    </section>
+</main>
+
+</body>
+
+<script type="text/javascript" src="/mdb/js/jquery.min.js"></script>
+<script type="text/javascript" src="/mdb/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/mdb/js/mdb.min.js"></script>
+<script type="text/javascript" src="/mdb/js/popper.min.js"></script>
+<script src="https://kit.fontawesome.com/7d3e7301a3.js" crossorigin="anonymous"></script>
+
+<script src="/js/worker_register.js"></script>
+<script type="module" src="/js/Aluno/main.js"></script>
+</html>

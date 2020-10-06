@@ -20,20 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34c12faa-136b-4c1a-a609-3b024ad44d35" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/UsuariosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/html/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Frontend/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/js/modules/ajax.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/js/modules/blinder/eloquent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/js/modules/blinder/eloquent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/js/modules/visible.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/js/modules/visible.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/js/modules/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/js/modules/ajax.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -44,6 +43,11 @@
     <option name="projectConfigVersion" value="2" />
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpServers">
+    <servers>
+      <server host="127.0.0.1" id="9f0f9121-ff9a-476c-8c02-19d78079d502" name="127.0.0.1" port="8000" />
+    </servers>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
@@ -144,7 +148,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../new-plusdin-api" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -162,7 +166,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599857359448</updated>
-      <workItem from="1599857360470" duration="6897000" />
+      <workItem from="1599857360470" duration="7103000" />
+      <workItem from="1599909829529" duration="1531000" />
+      <workItem from="1600127157330" duration="2188000" />
+      <workItem from="1600167616511" duration="607000" />
+      <workItem from="1601814057269" duration="1350000" />
+      <workItem from="1601919979019" duration="32000" />
     </task>
     <servers />
   </component>
@@ -179,11 +188,75 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="510" height="457" key="DebuggerActiveHint" timestamp="1601815393196">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="510" height="457" key="DebuggerActiveHint/0.30.1366.738@0.30.1366.738" timestamp="1601815393196" />
+    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl" timestamp="1601920008981">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1601920008981" />
+    <state width="1320" height="132" key="GridCell.Tab.0.bottom" timestamp="1601815368289">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.0.bottom/0.30.1366.738@0.30.1366.738" timestamp="1601815368289" />
+    <state width="1320" height="132" key="GridCell.Tab.0.center" timestamp="1601815368288">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.0.center/0.30.1366.738@0.30.1366.738" timestamp="1601815368288" />
+    <state width="1320" height="132" key="GridCell.Tab.0.left" timestamp="1601815368288">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.0.left/0.30.1366.738@0.30.1366.738" timestamp="1601815368288" />
+    <state width="1320" height="132" key="GridCell.Tab.0.right" timestamp="1601815368289">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.0.right/0.30.1366.738@0.30.1366.738" timestamp="1601815368289" />
+    <state width="1320" height="132" key="GridCell.Tab.1.bottom" timestamp="1601815368290">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.1.bottom/0.30.1366.738@0.30.1366.738" timestamp="1601815368290" />
+    <state width="1320" height="132" key="GridCell.Tab.1.center" timestamp="1601815368290">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.1.center/0.30.1366.738@0.30.1366.738" timestamp="1601815368290" />
+    <state width="1320" height="132" key="GridCell.Tab.1.left" timestamp="1601815368289">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.1.left/0.30.1366.738@0.30.1366.738" timestamp="1601815368289" />
+    <state width="1320" height="132" key="GridCell.Tab.1.right" timestamp="1601815368290">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.1.right/0.30.1366.738@0.30.1366.738" timestamp="1601815368290" />
+    <state width="1320" height="132" key="GridCell.Tab.2.bottom" timestamp="1601815368293">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.2.bottom/0.30.1366.738@0.30.1366.738" timestamp="1601815368293" />
+    <state width="1320" height="132" key="GridCell.Tab.2.center" timestamp="1601815368291">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.2.center/0.30.1366.738@0.30.1366.738" timestamp="1601815368291" />
+    <state width="1320" height="132" key="GridCell.Tab.2.left" timestamp="1601815368291">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.2.left/0.30.1366.738@0.30.1366.738" timestamp="1601815368291" />
+    <state width="1320" height="132" key="GridCell.Tab.2.right" timestamp="1601815368291">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state width="1320" height="132" key="GridCell.Tab.2.right/0.30.1366.738@0.30.1366.738" timestamp="1601815368291" />
     <state x="391" y="143" width="583" height="512" key="find.popup" timestamp="1599860581116">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="391" y="143" width="583" height="512" key="find.popup/0.30.1366.738@0.30.1366.738" timestamp="1599860581116" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="server.php">
+        <watch expression="$request-&gt;all()" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
