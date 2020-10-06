@@ -1,54 +1,144 @@
+export default class ajax {
 
-export default class ajax  {
+    baseUrl = 'http://localhost:8000/api/';
+    clear = true;
+    log = true;
+    virtualAttributes = [];
+    promises = [];
+    promisesRequest = [];
+    url = '';
 
-    static baseUrl = 'http://localhost:8000/api/';
-    static clear = true;
-    static virtualAttributes = [];
+    static setUrl(url) {
+        const instance = new ajax();
+        instance.url = this.baseUrl + url;
+        return instance;
+    }
 
-    static setAttributes(attributes){
-        for(let i in attributes){
+    setUrl(url) {
+        this.url = this.baseUrl + url;
+        return this;
+    }
+
+    static setAttributes(attributes) {
+        const instance = new ajax();
+        for (let i in attributes) {
+            instance[i] = attributes[i];
+            instance.virtualAttributes.push(i);
+        }
+        return instance;
+    }
+
+    setAttributes(attributes) {
+        for (let i in attributes) {
             this[i] = attributes[i];
             this.virtualAttributes.push(i);
         }
-        return ajax;
+        return this;
     }
 
-    static setUrl(url,baseUrl = ajax.baseUrl){
-        this.url = baseUrl+url;
-        return ajax;
+    changeLog(value = true) {
+        this.log = value;
+        return this;
     }
 
-    static changeClear(value = false){
-        this.clear = value;
+    changeClear(value = false) {
+        const instance = new ajax();
+        instance.clear = value;
+        return instance;
     }
 
-    static send(callback = function(){}, url = undefined, attributes = undefined){
-        if(url !== undefined){
-            ajax.setUrl(url);
+    send(callback = () => {}, attributes = undefined) {
+        if (attributes !== undefined) {
+            this.setAttributes(attributes);
         }
-        if(attributes !== undefined){
-            ajax.setAttributes(attributes);
+        let params = {};
+        for (let i in this.virtualAttributes) {
+            params[this.virtualAttributes[i]] = this[this.virtualAttributes[i]];
         }
+        const selfJs = this;
         $.ajax({
             type: "POST",
-            url: ajax.url,
-            data: ajax,
+            url: this.url,
+            data: {
+                'params': params,
+            },
         }).done(function (response) {
-            for(let i in ajax.virtualAttributes)
-                this[ajax.virtualAttributes[i]] = ajax[ajax.virtualAttributes[i]];
-            if(response.codigo == 200)
-            {
-                callback(response);
+            let request = {};
+            for (let i in selfJs.virtualAttributes)
+                request[selfJs.virtualAttributes[i]] = selfJs[selfJs.virtualAttributes[i]];
+            try {
+                callback(response, request);
+            } catch (e) {
+                console.error('Callback Error - ajax');
+                if (selfJs.log) {
+                    console.error('Response: ' + response);
+                    console.error('Error: ' + e);
+                }
+                callback(response, request);
             }
-            else{
-                console.log(response);
-            }
-            if(ajax.clear){
-                for(let i in ajax.virtualAttributes)
-                    ajax[ajax.virtualAttributes[i]] = undefined;
-                ajax.virtualAttributes = [];
+            if (selfJs.clear) {
+                selfJs.clearAttributes();
             }
         });
+    }
+
+    clearAttributes() {
+        for (let i in this.virtualAttributes)
+            this[this.virtualAttributes[i]] = undefined;
+        this.virtualAttributes = [];
+    }
+
+    promise(attributes = undefined) {
+        if (attributes !== undefined) {
+            this.setAttributes(attributes);
+        }
+        let params = {};
+        for (let i in this.virtualAttributes) {
+            params[this.virtualAttributes[i]] = this[this.virtualAttributes[i]];
+        }
+        let requested = {
+            params
+        };
+        requested.function = this.function;
+        this.promisesRequest.push(requested)
+        this.promises.push(
+            $.ajax({
+                type: "POST",
+                url: this.url,
+                data: {
+                    'function': this.function,
+                    'params': params,
+                },
+            })
+        );
+        this.clearAttributes();
+        return this;
+    }
+
+    sendAll(callback = null) {
+        const selfJs = this;
+        if (callback != null) {
+            Promise.all(selfJs.promises).then(function (responses) {
+                for (let i in responses) {
+                    const response = responses[i];
+                    try {
+                        responses[i] = response;
+                        responses[i].request = selfJs.promisesRequest[i];
+                    } catch (e) {
+                        console.error('Promise error - ajax');
+                        if (selfJs.log) {
+                            console.error('Response: ' + responses[i]);
+                            console.error('Error: ' + e);
+                        }
+                        responses[i].request = selfJs.promisesRequest[i];
+                    }
+                }
+                callback(responses);
+                selfJs.promisesRequest = [];
+                selfJs.promises = [];
+            });
+        }
+        return this;
     }
 
 }

@@ -29,7 +29,8 @@ $(document).ready(function () {
             'codigoTipoUsuario': $('#selectTipoUsuario option:selected').val(),
         };
         Ajax.setAttributes(attributes).setUrl('usuario/criar').send(function (data) {
-            visible.comunicate(data);
+            const type = data.codigo === 200 ? 'success' : '#errorCadastrar';
+            visible.comunicate(data.mensagem.join('<br/>'),type);
         });
     });
 
