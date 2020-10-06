@@ -18,9 +18,9 @@
     <!-- MDB Itens -->
     <link href="/mdb/css/bootstrap.min.css" rel="stylesheet">
     <link href="/mdb/css/mdb.min.css" rel="stylesheet">
-
     <!-- <link rel="stylesheet" href="/css/login.css"> -->
-    <link rel="stylesheet" href="../css/geral.css">
+    <link rel="stylesheet" href="../../css/geral.css">
+    <link rel="stylesheet" href="../../css/check.css">
 </head>
 
 <body>
@@ -60,7 +60,9 @@
     <section class="view" id="homeProfessor">
         <div class="row text-center">
             <div class="col-1"></div>
-            <div class="col-10"><h2>Essa é a tela inicial.</h2></div>
+            <div class="col-10">
+                <h2>Essa é a tela inicial.</h2>
+            </div>
         </div>
     </section>
 
@@ -111,13 +113,214 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-5">
-                <div class="col-1"></div>
-                <div class="col-10 text-center">
-                    <button type="button" id="cadastrarAtividade" class="btn btn-success btn-sm w-100">Cadastrar</button>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5 text-center">
+                <div class="md-form">
+                    <input type="text" id="inputData" class="form-control">
+                    <label for="inputData">Data Máxima</label>
                 </div>
             </div>
+            <div class="col-5 text-center">
+                <div class="md-form">
+                    <input type="text" id="inputTempo" class="form-control">
+                    <label for="imputTempo">Tempo Realização (HH:MM)</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-1"></div>
+            <div class="col-10 text-center">
+                <button type="button" id="cadastrarAtividade" class="btn btn-success btn-sm w-100">Salvar e
+                    Avançar</button>
+            </div>
+        </div>
     </section>
+
+    <section class="view mt-4 d-none" id="viewCadastroQuestoes">
+        <div class="row">
+            <div class="col text-center">
+                <h3>Cadastrar Questões</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-center">
+                <div class="md-form">
+                    <textarea id="inputEnunciado" class="md-textarea form-control limparQuestao" rows="3"></textarea>
+                    <label for="inputEnunciado">Enunciado Questão</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-4">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-unique btn-sm btnGroupClick" id="btnGroupClickA">A</button>
+                    <button type="button" class="btn btn-light btn-sm btnGroupClick" id="btnGroupClickB">B</button>
+                    <button type="button" class="btn btn-light btn-sm btnGroupClick" id="btnGroupClickC">C</button>
+                    <button type="button" class="btn btn-light btn-sm btnGroupClick" id="btnGroupClickD">D</button>
+                    <button type="button" class="btn btn-light btn-sm btnGroupClick" id="btnGroupClickE">E</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="md-form divAlternativas" id="divAlternativaA">
+                    <textarea id="alternativaA" class="md-textarea form-control limparQuestao" rows="3"></textarea>
+                    <label for="alternativaA">Resposta Questão A</label>
+                </div>
+                <div class="md-form divAlternativas" id="divAlternativaB" hidden>
+                    <textarea id="alternativaB" class="md-textarea form-control limparQuestao" rows="3"></textarea>
+                    <label for="alternativaB">Resposta Questão B</label>
+                </div>
+                <div class="md-form divAlternativas" id="divAlternativaC" hidden>
+                    <textarea id="alternativaC" class="md-textarea form-control limparQuestao" rows="3"></textarea>
+                    <label for="alternativaC">Resposta Questão C</label>
+                </div>
+                <div class="md-form divAlternativas" id="divAlternativaD" hidden>
+                    <textarea id="alternativaD" class="md-textarea form-control limparQuestao" rows="3"></textarea>
+                    <label for="alternativaD">Resposta Questão D</label>
+                </div>
+                <div class="md-form divAlternativas" id="divAlternativaE" hidden>
+                    <textarea id="alternativaE" class="md-textarea form-control limparQuestao" rows="3"></textarea>
+                    <label for="alternativaE">Resposta Questão E</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-1"></div>
+            <div class="col-2 text-center">
+                    <button type="button" class="float-left btn btn-outline-danger waves-effect" id="btnVoltarCadastro">Voltar</button>
+            </div>
+            <div class="col-6"></div>
+            <div class="col-2 text-center">
+                <button type="button" class="float-right btn btn-outline-success waves-effect" id="salvarQuestao">Salvar Questão</button>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <hr>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <table class="table table-sm">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="text-center col-2">Código</th>
+                            <th class="text-center col-8">Enunciado</th>
+                            <th class="text-center col-2">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyInsert">
+                        <!-- <tr class="d-flex">
+                            <th class="text-center col-2">1</th>
+                            <td class="text-center col-8">Corredores ecológicos visam mitigar os efeitos da fragmentação
+                                dos ecossistemas promovendo...</td>
+                            <td class="text-center col-2">
+                                <button type="button" class="btn btn-info btn-sm verQuestao"><i
+                                        class="far fa-eye"></i></button>
+                                <button type="button" id="adicionarQuestao" class="btn btn-unique btn-sm"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <th class="text-center col-2">2</th>
+                            <td class="text-center col-8">Corredores ecológicos visam mitigar os efeitos da fragmentação
+                                dos ecossistemas promovendo...</td>
+                            <td class="text-center col-2">
+                                <button type="button" class="btn btn-info btn-sm verQuestao"><i
+                                        class="far fa-eye"></i></button>
+                                <button type="button" id="adicionarQuestao" class="btn btn-unique btn-sm"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <th class="text-center col-2">3</th>
+                            <td class="text-center col-8">Corredores ecológicos visam mitigar os efeitos da fragmentação
+                                dos ecossistemas promovendo...</td>
+                            <td class="text-center col-2">
+                                <button type="button" class="btn btn-info btn-sm verQuestao"><i
+                                        class="far fa-eye"></i></button>
+                                <button type="button" id="adicionarQuestao" class="btn btn-unique btn-sm"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header unique-color">
+                    <h4 class="modal-title w-100 text-white" id="myModalLabel">Detalhamento Questão</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <p>
+                                Corredores ecológicos visam mitigar os efeitos da fragmentação dos ecossistemas
+                                promovendo a ligação entre diferentes áreas, com o objetivo de proporcionar o
+                                deslocamento de animais, a dispersão de sementes e o aumento da cobertura vegetal. São
+                                instituídos com base em informações como estudos sobre o deslocamento de espécies, sua
+                                área de vida (área necessária para o suprimento de suas necessidades vitais e
+                                reprodutivas) e a distribuição de suas populações.
+
+                                Nessa estratégia, a recuperação da biodiversidade é efetiva porque:
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <div>
+                                <p>
+                                    <input type="radio" class="option-input radio" name="example" />
+                                    amplia o processo de ocupação humana.
+                                </p>
+                                <p>
+                                    <input type="radio" class="option-input radio" name="example" />
+                                    aumenta o número de indivíduos nas populações.
+                                </p>
+                                <p>
+                                    <input type="radio" class="option-input radio" name="example" checked />
+                                    propicia o fluxo gênico.
+                                </p>
+                                <p>
+                                    <input type="radio" class="option-input radio" name="example" />
+                                    intensifica o manejo de espécies.
+                                </p>
+
+
+                                <p>
+                                    <input type="radio" class="option-input radio" name="example" />
+                                    favorece a formação de ilhas de proteção integral.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger waves-effect btn-sm"
+                        data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
@@ -127,6 +330,7 @@
 <script type="text/javascript" src="/mdb/js/mdb.min.js"></script>
 <script type="text/javascript" src="/mdb/js/popper.min.js"></script>
 <script src="https://kit.fontawesome.com/7d3e7301a3.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
 <script src="/js/worker_register.js"></script>
 <script type="module" src="/js/main.js"></script>

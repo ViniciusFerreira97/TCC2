@@ -1416,17 +1416,17 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "2.36.0",
-        "version_normalized": "2.36.0.0",
+        "version": "2.40.1",
+        "version_normalized": "2.40.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "d0b65958d9942fd1b501fdb0800c67e8323aa08d"
+            "reference": "d9a76d8b7eb0f97cf3a82529393245212f40ba3b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d0b65958d9942fd1b501fdb0800c67e8323aa08d",
-            "reference": "d0b65958d9942fd1b501fdb0800c67e8323aa08d",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d9a76d8b7eb0f97cf3a82529393245212f40ba3b",
+            "reference": "d9a76d8b7eb0f97cf3a82529393245212f40ba3b",
             "shasum": ""
         },
         "require": {
@@ -1439,13 +1439,13 @@
             "doctrine/orm": "^2.7",
             "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
             "kylekatarnls/multi-tester": "^2.0",
-            "phpmd/phpmd": "^2.8",
+            "phpmd/phpmd": "^2.9",
             "phpstan/extension-installer": "^1.0",
-            "phpstan/phpstan": "^0.12.30",
+            "phpstan/phpstan": "^0.12.35",
             "phpunit/phpunit": "^7.5 || ^8.0",
             "squizlabs/php_codesniffer": "^3.4"
         },
-        "time": "2020-06-25T20:20:01+00:00",
+        "time": "2020-09-23T08:17:37+00:00",
         "bin": [
             "bin/carbon"
         ],
@@ -2366,7 +2366,8 @@
         "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
         "keywords": [
             "tokenizer"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "phpunit/phpunit",

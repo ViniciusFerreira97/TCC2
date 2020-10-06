@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use Log;
 use Auth;
 use App\Http\Controllers\ResponseController;
-
+use Illuminate\Http\Request;
+use App\Models\Atividade;
+use App\Models\RlAtividadeQuestao;
+use Validator;
+use Carbon\Carbon;
 
 class AtividadesController extends Controller
 {
@@ -15,11 +19,13 @@ class AtividadesController extends Controller
             $validacao = Validator::make($request->all(), [
                 'tituloAtividade' => 'required',
                 'descricaoAtividade' => 'required',
-                'permitirTempo' => 'required'
+                'dataAtividade' => 'required',
+                'tempoAtividade' => 'required'
             ])->setAttributeNames([
                 'tituloAtividade' => 'Título da atividade',
                 'descricaoAtividade' => 'Descrição da atividade',
-                'permitirTempo' => 'Permitir Tempo'
+                'dataAtividade' => 'Data da atividade',
+                'tempoAtividade' => 'Tempo da atividade'
             ]);
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
@@ -27,20 +33,10 @@ class AtividadesController extends Controller
             $atividade = new Atividade;
             $atividade->titulo = $request->tituloAtividade;
             $atividade->descricao = $request->descricaoAtividade;
-            $atividade->permitir_tempo = $request->permitirTempo;
-            if($request->permitir_tempo == 1)
-            {
-                if($request->tempoRealizacao && $request->tempoRealizacao != null)
-                {
-                    $atividade->tempo = $request->tempoRealizacao;
-                }
-                else
-                {
-                    return app(ResponseController::class)->retornaJson(404, 'O tempo de realização é inválido.', null);
-                }
-            }
+            $atividade->data_maxima = Carbon::createFromFormat('d/m/Y', $request->dataAtividade)->format('Y-m-d');
+            $atividade->tempo = $request->tempoAtividade;
             $atividade->save();
-            return app(ResponseController::class)->retornaJson(200, 'Atividade cadastrada com sucesso.', null);
+            return app(ResponseController::class)->retornaJson(200, $atividade, null);
         } catch (\Throwable $th) {
             return app(ResponseController::class)->retornaJson(500, "Erro interno ao processar sua solicitação.", $th->getMessage());
         }
@@ -48,31 +44,36 @@ class AtividadesController extends Controller
 
     public function cadastrarQuestao(Request $request){
         try {
+            dd($request->all());
             $validacao = Validator::make($request->all(), [
                 'codigoAtividade' => 'required',
                 'enunciado' => 'required',
-                'codigoTipoQuestao' => 'required'
+                'alternativaA' => 'required',
+                'alternativaB' => 'required',
+                'alternativaC' => 'required',
+                'alternativaD' => 'required',
+                'alternativaE' => 'required'
             ])->setAttributeNames([
                 'codigoAtividade' => 'Código da Atividade',
                 'enunciado' => 'Enuncado da atividade',
-                'codigoTipoQuestao' => 'Tipo de questão'
+                'alternativaA' => 'Alternativa A',
+                'alternativaB' => 'Alternativa B',
+                'alternativaC' => 'Alternativa C',
+                'alternativaD' => 'Alternativa D',
+                'alternativaE' => 'Alternativa E',
             ]);
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
             }
-            $atividade = new AtividadeQuestao;
-            $atividade->enunciado = $request->enunciado;
-            $atividade->codigoTipoQuestao = $request->codigoTipoQuestao;
-            $atividade->alternativaA = $request->alternativaA;
-            $atividade->alternativaB = $request->alternativaB;
-            if($request->permitir_tempo == 2)
-            {
-                $atividade->alternativaB = $request->alternativaC;
-                $atividade->alternativaB = $request->alternativaD;
-                $atividade->alternativaB = $request->alternativaE;
-            }
-            $atividade->save();
-            return app(ResponseController::class)->retornaJson(200, 'Questão cadastrada com sucesso.', null);
+            $questao = new AtividadeQuestao;
+            $questao->enunciado = $request->enunciado;
+            $questao->alternativaA = $request->alternativaA;
+            $questao->alternativaB = $request->alternativaB;
+            $questao->alternativaB = $request->alternativaC;
+            $questao->alternativaB = $request->alternativaD;
+            $questao->alternativaB = $request->alternativaE;
+            $questao->save();
+            return app(ResponseController::class)->retornaJson(200, $questao, null);
         } catch (\Throwable $th) {
             return app(ResponseController::class)->retornaJson(500, "Erro interno ao processar sua solicitação.", $th->getMessage());
         }

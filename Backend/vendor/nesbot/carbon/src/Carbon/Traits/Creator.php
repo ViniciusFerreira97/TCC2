@@ -166,8 +166,8 @@ trait Creator
      * as it allows you to do Carbon::parse('Monday next week')->fn() rather
      * than (new Carbon('Monday next week'))->fn().
      *
-     * @param string|null              $time
-     * @param DateTimeZone|string|null $tz
+     * @param string|DateTimeInterface|null $time
+     * @param DateTimeZone|string|null      $tz
      *
      * @throws InvalidFormatException
      *
@@ -199,8 +199,8 @@ trait Creator
      * as it allows you to do Carbon::parse('Monday next week')->fn() rather
      * than (new Carbon('Monday next week'))->fn().
      *
-     * @param string|null              $time
-     * @param DateTimeZone|string|null $tz
+     * @param string|DateTimeInterface|null $time
+     * @param DateTimeZone|string|null      $tz
      *
      * @throws InvalidFormatException
      *
@@ -589,6 +589,9 @@ trait Creator
      */
     public static function rawCreateFromFormat($format, $time, $tz = null)
     {
+        // Work-around for https://bugs.php.net/bug.php?id=80141
+        $format = preg_replace('/(?<!\\\\)((?:\\\\{2})*)c/', '$1Y-m-d\TH:i:sP', $format);
+
         if (preg_match('/(?<!\\\\)(?:\\\\{2})*(a|A)/', $format, $aMatches, PREG_OFFSET_CAPTURE) &&
             preg_match('/(?<!\\\\)(?:\\\\{2})*(h|g|H|G)/', $format, $hMatches, PREG_OFFSET_CAPTURE) &&
             $aMatches[1][1] < $hMatches[1][1] &&

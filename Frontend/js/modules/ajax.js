@@ -36,8 +36,10 @@ export default class ajax  {
         }).done(function (response) {
             for(let i in ajax.virtualAttributes)
                 this[ajax.virtualAttributes[i]] = ajax[ajax.virtualAttributes[i]];
-            if(response.codigo === 200)
-                callback(response.mensagem);
+            if(response.codigo == 200)
+            {
+                callback(response);
+            }
             else{
                 console.log(response);
             }

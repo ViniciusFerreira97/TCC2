@@ -23,3 +23,4 @@ Route::post('/login',  'Auth\UsuariosController@login');
 Route::post('/atividade/criar',  'AtividadesController@cadastrarAtividade');
 Route::get('/atividade/listar',  'AtividadesController@editarAtividade');
 Route::post('/atividade/editar',  'AtividadesController@apagarAtividade');
+Route::post('/atividade/questao/criar',  'AtividadesController@cadastrarQuestao');
