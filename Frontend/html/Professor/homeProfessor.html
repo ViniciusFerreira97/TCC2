@@ -68,21 +68,25 @@
 
     <section class="view mt-3 d-none" id="cadastroProfessor">
         <div class="row">
-            <div class="col">
+            <div class="col-11">
                 <button type="button" id="novaAtividade" class="btn btn-primary btn-sm float-right">Cadastrar
                     Atividade</button>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col">
-                <table class="table">
-                    <thead class="black white-text">
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
+        <div class="row mt-5">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <table class="table table-sm">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="text-center col-2">Código</th>
+                            <th class="text-center col-5">Enunciado</th>
+                            <th class="text-center col-2">Data Maxima Realização</th>
+                            <th class="text-center col-2">Tempo Realização</th>
+                            <th class="text-center col-1">Ação</th>
                         </tr>
                     </thead>
-                    <tbody id='tabelaAtividades'>
+                    <tbody id="tdInicialInsert">
                     </tbody>
                 </table>
             </div>
@@ -152,7 +156,21 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-2">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <label>Resposta Correta</label>
+                <select class="browser-default custom-select" id="slctRespostaCorreta">
+                    <option selected="" value="0">Selecione</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-4">
             <div class="col-1"></div>
             <div class="col-4">
                 <div class="btn-group btn-group-sm" role="group">
@@ -189,11 +207,13 @@
         <div class="row mt-1">
             <div class="col-1"></div>
             <div class="col-2 text-center">
-                    <button type="button" class="float-left btn btn-outline-danger waves-effect" id="btnVoltarCadastro">Voltar</button>
+                <button type="button" class="float-left btn btn-outline-danger waves-effect"
+                    id="btnVoltarCadastro">Voltar</button>
             </div>
             <div class="col-6"></div>
             <div class="col-2 text-center">
-                <button type="button" class="float-right btn btn-outline-success waves-effect" id="salvarQuestao">Salvar Questão</button>
+                <button type="button" class="float-right btn btn-outline-success waves-effect" id="salvarQuestao">Salvar
+                    Questão</button>
             </div>
         </div>
         <div class="row mt-1">
@@ -214,39 +234,6 @@
                         </tr>
                     </thead>
                     <tbody id="tBodyInsert">
-                        <!-- <tr class="d-flex">
-                            <th class="text-center col-2">1</th>
-                            <td class="text-center col-8">Corredores ecológicos visam mitigar os efeitos da fragmentação
-                                dos ecossistemas promovendo...</td>
-                            <td class="text-center col-2">
-                                <button type="button" class="btn btn-info btn-sm verQuestao"><i
-                                        class="far fa-eye"></i></button>
-                                <button type="button" id="adicionarQuestao" class="btn btn-unique btn-sm"><i
-                                        class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr class="d-flex">
-                            <th class="text-center col-2">2</th>
-                            <td class="text-center col-8">Corredores ecológicos visam mitigar os efeitos da fragmentação
-                                dos ecossistemas promovendo...</td>
-                            <td class="text-center col-2">
-                                <button type="button" class="btn btn-info btn-sm verQuestao"><i
-                                        class="far fa-eye"></i></button>
-                                <button type="button" id="adicionarQuestao" class="btn btn-unique btn-sm"><i
-                                        class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr class="d-flex">
-                            <th class="text-center col-2">3</th>
-                            <td class="text-center col-8">Corredores ecológicos visam mitigar os efeitos da fragmentação
-                                dos ecossistemas promovendo...</td>
-                            <td class="text-center col-2">
-                                <button type="button" class="btn btn-info btn-sm verQuestao"><i
-                                        class="far fa-eye"></i></button>
-                                <button type="button" id="adicionarQuestao" class="btn btn-unique btn-sm"><i
-                                        class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -270,44 +257,14 @@
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <p>
-                                Corredores ecológicos visam mitigar os efeitos da fragmentação dos ecossistemas
-                                promovendo a ligação entre diferentes áreas, com o objetivo de proporcionar o
-                                deslocamento de animais, a dispersão de sementes e o aumento da cobertura vegetal. São
-                                instituídos com base em informações como estudos sobre o deslocamento de espécies, sua
-                                área de vida (área necessária para o suprimento de suas necessidades vitais e
-                                reprodutivas) e a distribuição de suas populações.
-
-                                Nessa estratégia, a recuperação da biodiversidade é efetiva porque:
+                            <p id="idEnunciadoModal">
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <div>
-                                <p>
-                                    <input type="radio" class="option-input radio" name="example" />
-                                    amplia o processo de ocupação humana.
-                                </p>
-                                <p>
-                                    <input type="radio" class="option-input radio" name="example" />
-                                    aumenta o número de indivíduos nas populações.
-                                </p>
-                                <p>
-                                    <input type="radio" class="option-input radio" name="example" checked />
-                                    propicia o fluxo gênico.
-                                </p>
-                                <p>
-                                    <input type="radio" class="option-input radio" name="example" />
-                                    intensifica o manejo de espécies.
-                                </p>
-
-
-                                <p>
-                                    <input type="radio" class="option-input radio" name="example" />
-                                    favorece a formação de ilhas de proteção integral.
-                                </p>
+                            <div id="divInsertOptions">
                             </div>
                         </div>
                     </div>

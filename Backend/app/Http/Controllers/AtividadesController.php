@@ -30,7 +30,14 @@ class AtividadesController extends Controller
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
             }
-            $atividade = new Atividade;
+            if($request->codigoAtividade != null)
+            {
+                $atividade = Atividade::find($request->codigoAtividade);
+            }
+            else
+            {
+                $atividade = new Atividade;
+            }
             $atividade->titulo = $request->tituloAtividade;
             $atividade->descricao = $request->descricaoAtividade;
             $atividade->data_maxima = Carbon::createFromFormat('d/m/Y', $request->dataAtividade)->format('Y-m-d');
@@ -44,7 +51,6 @@ class AtividadesController extends Controller
 
     public function cadastrarQuestao(Request $request){
         try {
-            dd($request->all());
             $validacao = Validator::make($request->all(), [
                 'codigoAtividade' => 'required',
                 'enunciado' => 'required',
@@ -65,13 +71,15 @@ class AtividadesController extends Controller
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
             }
-            $questao = new AtividadeQuestao;
+            $questao = new RlAtividadeQuestao;
             $questao->enunciado = $request->enunciado;
+            $questao->cd_atividade = $request->codigoAtividade;
+            $questao->ds_resposta_correta = $request->respostaCorreta;
             $questao->alternativaA = $request->alternativaA;
             $questao->alternativaB = $request->alternativaB;
-            $questao->alternativaB = $request->alternativaC;
-            $questao->alternativaB = $request->alternativaD;
-            $questao->alternativaB = $request->alternativaE;
+            $questao->alternativaC = $request->alternativaC;
+            $questao->alternativaD = $request->alternativaD;
+            $questao->alternativaE = $request->alternativaE;
             $questao->save();
             return app(ResponseController::class)->retornaJson(200, $questao, null);
         } catch (\Throwable $th) {
@@ -79,15 +87,21 @@ class AtividadesController extends Controller
         }
     }
 
+    public function listarDadosQuestao($codigoQuestao)
+    {
+        $questao = RlAtividadeQuestao::find($codigoQuestao);
+        return app(ResponseController::class)->retornaJson(200, $questao, null);
+    }
+
     public function listarAtividades($codigoAtividade){
         try {
             if($codigoAtividade != 0)
             {
-                $atividades = Atividades::where('cd_atividade', $codigoAtividade)->get();
+                $atividades = Atividade::where('cd_atividade', $codigoAtividade)->get();
             }
             else
             {
-                $atividades = Atividades::get();
+                $atividades = Atividade::get();
             }
             return app(ResponseController::class)->retornaJson(200, $atividades, null);
         } catch (\Throwable $th) {
