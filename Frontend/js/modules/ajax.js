@@ -60,7 +60,7 @@ export default class ajax {
             type: "POST",
             url: this.url+'?XDEBUG_SESSION_START=PHPSTORM',
             data: {
-                'params': params,
+                ...params,
             },
         }).done(function (response) {
             let request = {};

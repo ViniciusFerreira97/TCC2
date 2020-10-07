@@ -102,6 +102,7 @@ class UsuariosController extends Controller
             $dados = [];
             $dados['codigoUsuario'] = $usuario->cd_usuario;
             $dados['nomeUsuario'] = $usuario->nm_usuario;
+            $dados['codigoTipoUsuario'] = $usuario->cd_tipo_usuario;
             return app(ResponseController::class)->retornaJson(200, $dados, null);
         } catch (\Throwable $th) {
             Log::error($th);
