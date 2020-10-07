@@ -115,7 +115,7 @@ export default class ajax {
         this.promisesRequest.push(requested)
         this.promises.push(
             $.ajax({
-                type: "POST",
+                type: this.type,
                 url: this.url,
                 data: {
                     'function': this.function,
