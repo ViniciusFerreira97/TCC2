@@ -7,6 +7,7 @@ export default class ajax {
     promises = [];
     promisesRequest = [];
     url = '';
+    type = 'POST'
 
     static setUrl(url) {
         const instance = new ajax();
@@ -17,6 +18,17 @@ export default class ajax {
     setUrl(url) {
         this.url = this.baseUrl + url;
         return this;
+    }
+
+    static setType (type) {
+        const instance = new ajax()
+        instance.type = type
+        return instance
+    }
+
+    setType (type) {
+        this.type = type
+        return this
     }
 
     static setAttributes(attributes) {
@@ -57,8 +69,8 @@ export default class ajax {
         }
         const selfJs = this;
         $.ajax({
-            type: "POST",
-            url: this.url+'?XDEBUG_SESSION_START=PHPSTORM',
+            type: this.type,
+            url: this.url,
             data: {
                 ...params,
             },

@@ -56,11 +56,10 @@ $(document).ready(function () {
         };
         Ajax.setAttributes(attributes).setUrl('login').send(function(response){
             const type = response.codigo === 200 ? 'success' : '#errorLogar'
-
             let speak = 'Seu login foi validado. Entrando no sistema.'
 
             if(type !== 'success') {
-                speak = response.mensagem.join('<br/>')
+                speak = Array.isArray(response.mensagem) ? response.mensagem.join('<br/>') : response.mensagem
                 visible.comunicate(speak,type)
 
                 return false;
