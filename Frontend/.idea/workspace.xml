@@ -20,16 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c054bc51-32e0-4dac-8a59-8b8dfbc1daa7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/app/Http/Controllers/Auth/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/app/Http/Controllers/Auth/UsuariosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/Aluno/homeAluno.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/Aluno/homeAluno.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/Aluno/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Aluno/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Aluno/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Aluno/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/modules/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modules/ajax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/modules/blinder/blinderKeeper.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modules/blinder/blinderKeeper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/modules/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modules/view.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,18 +62,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/js/Aluno" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/js/modules" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/js/Aluno" />
       <recent name="$PROJECT_DIR$/js/Aluno/main" />
       <recent name="$PROJECT_DIR$/html/Aluno" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/Aluno" />
+      <recent name="$PROJECT_DIR$/js/modules" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -95,6 +96,13 @@
       <workItem from="1601814101402" duration="1359000" />
       <workItem from="1601897045849" duration="18000" />
       <workItem from="1602020793976" duration="10277000" />
+      <workItem from="1602079641661" duration="16000" />
+      <workItem from="1602108830631" duration="5440000" />
+      <workItem from="1602161260689" duration="18000" />
+      <workItem from="1602169640300" duration="21000" />
+      <workItem from="1602721136690" duration="5115000" />
+      <workItem from="1602759841958" duration="410000" />
+      <workItem from="1602798686141" duration="10675000" />
     </task>
     <servers />
   </component>
@@ -118,10 +126,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="416" y="148" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.30.1366.738@0.30.1366.738" timestamp="1599858094377" />
-    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl" timestamp="1601897062572">
+    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl" timestamp="1602760249368">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1601897062572" />
+    <state x="466" y="157" width="424" height="487" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1602760249368" />
     <state x="391" y="143" width="583" height="512" key="find.popup" timestamp="1602028477189">
       <screen x="0" y="30" width="1366" height="738" />
     </state>

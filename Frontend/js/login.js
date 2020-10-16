@@ -71,8 +71,8 @@ $(document).ready(function () {
             Storage.save('user', response.mensagem)
 
             setTimeout(() => {
-                switch (response.mensagem.codigoTipoUsuario) {
-                    case '1':
+                switch (parseInt(response.mensagem.codigoTipoUsuario)) {
+                    case 1:
                         location.href = '/html/Aluno/homeAluno.html'
                         break;
                     default:

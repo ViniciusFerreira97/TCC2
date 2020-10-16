@@ -11,7 +11,7 @@ export default class ajax {
 
     static setUrl(url) {
         const instance = new ajax();
-        instance.url = this.baseUrl + url;
+        instance.url = instance.baseUrl + url;
         return instance;
     }
 
@@ -70,7 +70,7 @@ export default class ajax {
         const selfJs = this;
         $.ajax({
             type: this.type,
-            url: this.url,
+            url: this.url + '?XDEBUG_SESSION_START=PHPSTORM',
             data: {
                 ...params,
             },

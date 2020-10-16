@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Atividade;
+use App\Models\RlAtividadeQuestao;
+use App\Models\RlUsuarioAtividade;
 use App\Models\TipoCompromisso;
 use Log;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -99,14 +102,67 @@ class UsuariosController extends Controller
             \Session::put('email', $usuario->email);
             \Session::put('cd_tipo_usuario', $usuario->cd_tipo_usuario);
 
+            $rlUsuarioAtividade = new RlUsuarioAtividade();
+            $rlAtividades = $rlUsuarioAtividade->where('cd_usuario', $usuario->cd_usuario)->get();
+            $userAtividades = [];
+            $rlAtividades->each(function($item) use (&$userAtividades) {
+                $atividade = new Atividade();
+                $rlAtividadeQuestao = new RlAtividadeQuestao();
+                $rlAtividadeQuestao->where('cd_atividade', $item->cd_atividade);
+                $userAtividades[] = [
+                    'atividade' => $atividade->find($item->cd_atividade),
+                    'questoes' => $rlAtividadeQuestao->get(),
+                ];
+            });
+
             $dados = [];
             $dados['codigoUsuario'] = $usuario->cd_usuario;
             $dados['nomeUsuario'] = $usuario->nm_usuario;
             $dados['codigoTipoUsuario'] = $usuario->cd_tipo_usuario;
+            $dados['tarefas'] = $userAtividades;
             return app(ResponseController::class)->retornaJson(200, $dados, null);
         } catch (\Throwable $th) {
             Log::error($th);
             return app(ResponseController::class)->retornaJson(500, "Erro interno ao realizar a autenticação.", $th->getMessage());
         }
+    }
+
+    public function procurarTarefa($id){
+        $atividade = new Atividade();
+        $atividadeEncontrada = $atividade->find($id);
+
+        if(!$atividadeEncontrada) {
+            return app(ResponseController::class)->retornaJson(404, 'Atividade invalida.', null);
+        }
+
+        return app(ResponseController::class)->retornaJson(200, $atividadeEncontrada, null);
+    }
+
+    public function adicionarTarefa(Request $request)
+    {
+        $atividade = new Atividade();
+        $atividadeEncontrada = $atividade->find($request->tarefa);
+
+        if(!$atividadeEncontrada) {
+            return app(ResponseController::class)->retornaJson(404, 'Atividade invalida.', null);
+        }
+
+        $rl = new RlUsuarioAtividade();
+        $rl->cd_usuario = $request->codigoUsuario;
+        $rl->cd_atividade = $request->tarefa;
+        $rl->tempo_restante = 'aaaa';
+        $rl->flg_finalizada = 0;
+        $rl->save();
+
+        $questoes = new RlAtividadeQuestao();
+        $data = $questoes->where('cd_atividade', $request->tarefa)
+            ->get();
+
+        $items = [
+            'atividade' => $atividadeEncontrada,
+            'questao' => $data
+        ];
+
+        return app(ResponseController::class)->retornaJson(200, $items, null);
     }
 }

@@ -68,7 +68,7 @@
             </div>
         </div>
         <section>
-            <div class="row p-3 font-weight-bold">
+            <div class="row p-3 font-weight-bold" id="procurarAtividadeAtalho">
                 <div class="col">
                 <span class="p-2 rounded rgba-grey-slight mr-3">
                     <i class="fas fa-search"></i>
@@ -77,12 +77,21 @@
                 </div>
             </div>
             <hr>
-            <div class="row p-3 font-weight-bold">
+            <div class="row p-3 font-weight-bold" id="historicoAtividadesAtalho">
                 <div class="col">
                 <span class="p-2 rounded rgba-grey-slight mr-3">
                     <i class="fas fa-list"></i>
                 </span>
                     Histórico de atividades
+                </div>
+            </div>
+            <hr>
+            <div class="row p-3 font-weight-bold" id="atividadeRecenteAtalho">
+                <div class="col">
+                <span class="p-2 rounded rgba-grey-slight mr-3">
+                    <i class="fas fa-spinner"></i>
+                </span>
+                    Atividade recente
                 </div>
             </div>
             <hr>
@@ -92,6 +101,13 @@
         <div>
             <h4>Sua lista de atividades</h4>
         </div>
+        <div class="mt-5">
+            <ul class="list-group" id="listaTarefas">
+            </ul>
+        </div>
+        <div class="mt-5 d-none" id="listaTarefasVazio">
+            Sem tarefas.
+        </div>
     </section>
     <section class="h-100 view d-none" id="procurarView">
         <h3>
@@ -100,18 +116,32 @@
         <div class="d-flex justify-content-center mt-5">
             <input type="text" id="codigoTarefaTxt" class="form-control w-75" placeholder="Insira o código da tarefa">
         </div>
-        <button type="button" class="btn light-blue white-text mt-3">Pesquisar</button>
+        <button type="button" class="btn light-blue white-text mt-3" id="btnPesquisarTarefa">
+            Pesquisar
+        </button>
         <div class="d-flex justify-content-center mt-5">
-            <section class="w-75 border rounded p-4">
-                <h5 class="m-2">
-                    Criador da Tarefa <span></span>
-                </h5>
-                <h5 class="m-2">
-                    Data de Expiração <span></span>
-                </h5>
+            <section class="text-white danger-color p-2 rounded d-none" id="tarefaNaoEncontradaPesquisa">
+                Tarefa
             </section>
         </div>
-        <button type="button" class="btn btn-pink mt-5">Adicionar Tarefa</button>
+        <section id="tarefaProcurada" class="d-none">
+            <div class="d-flex justify-content-center mt-5">
+                <section class="w-75 border rounded p-4">
+                    <h5 class="m-2">
+                        <span id="tituloTarefaPesquisada"> 15/09/2020 </span>
+                    </h5>
+                    <h5 class="m-2">
+                        Por: <span id="criadorTarefaPesquisada">Marcus Silva Jr.</span>
+                    </h5>
+                    <h5 class="m-2">
+                        Expiração: <span id="dataTarefaPesquisada"> 15/09/2020 </span>
+                    </h5>
+                </section>
+            </div>
+            <button type="button" class="btn btn-pink mt-5" id="btnAdicionarTarefa">
+                Adicionar Tarefa
+            </button>
+        </section>
     </section>
     <section class="h-100 d-none view" id="userView">
         <div>
@@ -125,6 +155,28 @@
         </div>
     </section>
 </main>
+
+<div class="modal fade top" id="alert-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-top" role="document">
+        <div class="modal-content success-color text-white">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade top" id="alert-error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-top" role="document">
+        <div class="modal-content danger-color text-white">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 
