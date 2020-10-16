@@ -20,16 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c054bc51-32e0-4dac-8a59-8b8dfbc1daa7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/app/Http/Controllers/Auth/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/app/Http/Controllers/Auth/UsuariosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/Aluno/homeAluno.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/Aluno/homeAluno.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Aluno/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Aluno/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Aluno/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Aluno/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/modules/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modules/ajax.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Aluno/listaTarefas.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Aluno/listaTarefas.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +98,9 @@
       <workItem from="1602169640300" duration="21000" />
       <workItem from="1602721136690" duration="5115000" />
       <workItem from="1602759841958" duration="410000" />
-      <workItem from="1602798686141" duration="10675000" />
+      <workItem from="1602798686141" duration="11564000" />
+      <workItem from="1602850160779" duration="2000" />
+      <workItem from="1602880174618" duration="10428000" />
     </task>
     <servers />
   </component>
@@ -134,9 +132,9 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="391" y="143" width="583" height="512" key="find.popup/0.30.1366.738@0.30.1366.738" timestamp="1602028477189" />
-    <state x="347" y="176" key="run.anything.popup" timestamp="1601141990896">
+    <state x="347" y="176" key="run.anything.popup" timestamp="1602881264842">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="347" y="176" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1601141990896" />
+    <state x="347" y="176" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1602881264842" />
   </component>
 </project>

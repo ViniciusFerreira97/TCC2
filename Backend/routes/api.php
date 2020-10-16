@@ -22,6 +22,8 @@ Route::post('/usuario/criar',  'Auth\UsuariosController@cadastrarUsuario');
 Route::post('/usuario/criar',  'Auth\UsuariosController@cadastrarUsuario');
 Route::post('/usuario/editar',  'Auth\UsuariosController@editarUsuario');
 Route::post('/usuario/adicionar/tarefa',  'Auth\UsuariosController@adicionarTarefa');
+Route::post('/usuario/responder/tarefa',  'Auth\UsuariosController@responderTarefa');
+Route::post('/usuario/finalizar/tarefa',  'Auth\UsuariosController@finalizaTarefa');
 Route::post('/atividade/criar',  'AtividadesController@cadastrarAtividade');
 Route::get('/atividade/listar/{codigoAtividade}',  'AtividadesController@listarAtividades');
 Route::post('/atividade/editar',  'AtividadesController@apagarAtividade');

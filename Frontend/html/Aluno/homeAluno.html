@@ -86,28 +86,52 @@
                 </div>
             </div>
             <hr>
-            <div class="row p-3 font-weight-bold" id="atividadeRecenteAtalho">
-                <div class="col">
-                <span class="p-2 rounded rgba-grey-slight mr-3">
-                    <i class="fas fa-spinner"></i>
-                </span>
-                    Atividade recente
-                </div>
-            </div>
-            <hr>
         </section>
     </section>
     <section class="h-100 view d-none" id="atividadesView">
-        <div>
-            <h4>Sua lista de atividades</h4>
-        </div>
-        <div class="mt-5">
-            <ul class="list-group" id="listaTarefas">
-            </ul>
-        </div>
-        <div class="mt-5 d-none" id="listaTarefasVazio">
-            Sem tarefas.
-        </div>
+        <section id="mainAtividadeView" class="">
+            <div>
+                <h4>Sua lista de atividades</h4>
+            </div>
+            <div class="mt-5">
+                <ul class="list-group" id="listaTarefas">
+                </ul>
+            </div>
+            <div class="mt-5 d-none" id="listaTarefasVazio">
+                Sem tarefas.
+            </div>
+        </section>
+        <section id="tarefaAtividadeView" class="d-none">
+            <h3 class="titulo"> Titulo </h3>
+
+            <div class="font-weight-bold mt-5">
+                Questao <span class="questaoNumero"></span>
+            </div>
+            <div class="font-weight-bolder mt-5 textoQuestao"></div>
+            <div class="mt-5 letrasQuestao"></div>
+            <div class="mt-5 d-flex justify-content-around">
+                <button type="button" class="btn light-blue white-text d-none" id="btnVoltarTarefa">
+                    Voltar
+                </button>
+                <button type="button" class="btn btn-pink d-none" id="btnProximaTarefa">
+                    Próxima
+                </button>
+            </div>
+        </section>
+        <section id="resultadoAtividadeView" class="d-none">
+            <h3>Resultado da atividade</h3>
+            <div class="mt-5">
+                <h4>Acertos</h4>
+                <h2 class="text-success"> 50 </h2>
+            </div>
+            <div class="mt-5">
+                <h4>Erros</h4>
+                <h2 class="text-danger"> 50 </h2>
+            </div>
+            <button type="button" class="btn light-blue white-text mt-5" id="btnVoltarInicioTarefa">
+                Voltar
+            </button>
+        </section>
     </section>
     <section class="h-100 view d-none" id="procurarView">
         <h3>

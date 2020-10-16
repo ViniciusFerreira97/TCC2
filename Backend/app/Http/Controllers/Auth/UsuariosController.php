@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Atividade;
 use App\Models\RlAtividadeQuestao;
 use App\Models\RlUsuarioAtividade;
+use App\Models\RlUsuarioQuestao;
 use App\Models\TipoCompromisso;
 use Log;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -160,9 +161,55 @@ class UsuariosController extends Controller
 
         $items = [
             'atividade' => $atividadeEncontrada,
-            'questao' => $data
+            'questoes' => $data
         ];
 
         return app(ResponseController::class)->retornaJson(200, $items, null);
+    }
+
+    public function responderTarefa(Request $request) {
+        $validacao = Validator::make($request->all(), [
+            'cd_usuario' => 'required',
+            'cd_atividade_questao' => 'required',
+            'resposta' => 'required'
+        ])->setAttributeNames([
+            'cd_usuario' => 'Codigo do usuario',
+            'cd_atividade_questao' => 'Codigo da Questao',
+            'resposta' => 'Resposta'
+        ]);
+        if ($validacao->fails()) {
+            return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
+        }
+
+        $rlAtividadeQuestao = new RlAtividadeQuestao();
+        $rlAtividadeQuestao = $rlAtividadeQuestao->find($request->cd_atividade_questao);
+
+        $rlUsuarioQuestao = new RlUsuarioQuestao();
+        $rlUsuarioQuestao->cd_atividade_questao = $request->cd_atividade_questao;
+        $rlUsuarioQuestao->cd_usuario = $request->cd_usuario;
+        $rlUsuarioQuestao->resposta = $request->resposta;
+        $rlUsuarioQuestao->flg_correto = $request->resposta == $rlAtividadeQuestao->ds_resposta_correta ? '1' : '0';
+        $rlUsuarioQuestao->save();
+
+        return $rlUsuarioQuestao;
+    }
+
+    public function finalizaTarefa(Request $request){
+        $validacao = Validator::make($request->all(), [
+            'cd_atividade' => 'required',
+            'cd_usuario' => 'required',
+        ])->setAttributeNames([
+            'cd_atividade' => 'Codigo da Atividade',
+            'cd_usuario' => 'Codigo do Usuario',
+        ]);
+        if ($validacao->fails()) {
+            return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
+        }
+
+        $rlUsuarioAtividade = new RlUsuarioAtividade();
+        $rlUsuarioAtividade->flg_finalizada = 1;
+        $rlUsuarioAtividade->where('cd_usuario', $request->cd_usuario)
+            ->where('cd_atividade', $request->cd_atividade);
+        return $rlUsuarioAtividade->update();
     }
 }
