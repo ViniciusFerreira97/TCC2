@@ -1,6 +1,7 @@
 import View from '/js/modules/view.js';
 import Eloquent from "/js/modules/blinder/eloquent.js";
 import Storage from "../modules/storage/storage.js";
+import Blinder from "../modules/blinder/blinder.js";
 
 import Menu from './menu.js';
 import listaTarefas from "./listaTarefas.js";
@@ -19,6 +20,8 @@ const menuView = {
 }
 
 $(document).ready(function (){
+    Blinder.handle()
+
     Menu()
     listaTarefas()
     procurarTarefa()
