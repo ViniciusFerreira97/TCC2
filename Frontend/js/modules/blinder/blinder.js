@@ -1,5 +1,6 @@
 import Keeper from "./blinderKeeper.js";
 import Eloquent from "./eloquent.js";
+import storage from "../storage/storage.js";
 
 export default class blinder {
 
@@ -112,6 +113,7 @@ export default class blinder {
     static handle() {
         if(blinder.components === undefined){
             blinder.reset();
+            blinder.accessibility = storage.get('accessibility')
         }
         let callback = function (e) {
             e.stopPropagation();
@@ -141,27 +143,17 @@ export default class blinder {
         let postext = text.replace(pretext+' ','').toLowerCase();
         for(let i in blinder.components){
             let synonym = undefined;
+
             if(blinder.components[i].synonym != undefined)
                 synonym = blinder.components[i].synonym.toLowerCase();
+
+            if(i.toLowerCase() == text || synonym == text) {
+                blinder.handleComponent(i)
+                return;
+            }
+
             if(pretext == i.toLowerCase() || synonym == pretext){
-                if(blinder.components[i]['pre-talk'] !== undefined){
-                    Eloquent.speak(blinder.components[i]['pre-talk']);
-                }
-                let action = blinder.components[i].action.toLowerCase();
-                if(blinder.blinderActions.includes(action)){
-                    let target = blinder.components[i].target;
-                    switch (action) {
-                        case 'click':
-                            $(target).click();
-                            break;
-                        case 'insert':
-                            $(target).val(postext).focus();
-                            break;
-                    }
-                }
-                if(blinder.components[i].talk !== undefined){
-                    Eloquent.speak(blinder.components[i].talk);
-                }
+                blinder.handleComponent(i, postext)
                 return;
             }
         }
@@ -169,18 +161,42 @@ export default class blinder {
         return blinder.itemNotFound();
     }
 
+    static handleComponent(i, postext = null){
+        if(blinder.components[i]['pre-talk'] !== undefined){
+            Eloquent.speak(blinder.components[i]['pre-talk']);
+        }
+        let action = blinder.components[i].action.toLowerCase();
+        if(blinder.blinderActions.includes(action)){
+            let target = blinder.components[i].target;
+            switch (action) {
+                case 'click':
+                    $(target).click();
+                    break;
+                case 'insert':
+                    $(target).val(postext).focus().trigger('changed');
+                    break;
+            }
+        }
+        if(blinder.components[i].talk !== undefined){
+            Eloquent.speak(blinder.components[i].talk);
+        }
+    }
+
     static itemNotFound(){
-        Eloquent.speak('Desculpe, não consegui encontrar a opção dita.');
+        Eloquent.speak('Desculpe, não consegui encontrar o comando.');
         return blinder;
     }
 
     static readComponents(){
-        //blinder.load();
-        Eloquent.speak('São opções de comando:');
-        for(let i in blinder.components){
-            Eloquent.speak(i);
-            if(blinder.components[i].alt != undefined)
-                Eloquent.speak(blinder.components[i].alt);
+        if(Object.keys(blinder.components).length) {
+            Eloquent.speak('São opções de comando:');
+            for(let i in blinder.components){
+                Eloquent.speak(i);
+                if(blinder.components[i].alt != undefined)
+                    Eloquent.speak(blinder.components[i].alt);
+            }
+        } else {
+            Eloquent.speak('Sem opções de comando.');
         }
         return blinder;
     }

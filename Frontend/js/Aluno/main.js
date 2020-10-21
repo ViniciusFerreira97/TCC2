@@ -2,6 +2,7 @@ import View from '/js/modules/view.js';
 import Eloquent from "/js/modules/blinder/eloquent.js";
 import Storage from "../modules/storage/storage.js";
 import Blinder from "../modules/blinder/blinder.js";
+import visible from "../modules/visible.js";
 
 import Menu from './menu.js';
 import listaTarefas from "./listaTarefas.js";
@@ -27,9 +28,13 @@ $(document).ready(function (){
     procurarTarefa()
     User()
 
+    visible.load('menuView')
     const view = Storage.get('view')
     const viewAble = views.includes(view) ? view : 'homeView'
     $('#' + menuView[viewAble]).click()
+
+    if(viewAble == 'homeView')
+        Eloquent.speak('Seja bem vindo ao iVision')
 
     $('.userName').html(Storage.get('user').nomeUsuario)
 
