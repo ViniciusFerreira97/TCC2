@@ -18,7 +18,10 @@ export default function () {
 
     $('#tradeAtividade').on('click', function () {
         View.tradeView('atividadesView');
-        eloquent.speak('Historico de atividades carregados.')
+        eloquent.speak('Lista de atividades carregada.')
+        $('#listaTarefas li').each(item => {
+
+        })
     });
 
     $('#tradeProcurar').on('click', function () {

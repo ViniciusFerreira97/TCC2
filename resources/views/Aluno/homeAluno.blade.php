@@ -47,8 +47,8 @@
     </div>
     <section class="view" id="menuView">
         <div class="blinderItem" id="menuAlunoBlinder">
-            <item name="Histórico de Atividade" action="click" target="#tradeAtividade" synonym="histórico de"/>
-            <item name="Procurar Atividade" action="click" talk="Qual tarefa iremos realizar ?" target="#tradeProcurar" synonym="Pesquisar Atividade"/>
+            <item name="Lista de Atividade" action="click" target="#tradeAtividade" synonym="Lista de"/>
+            <item name="Procurar Atividade" action="click" talk="Qual tarefa iremos realizar ?" target="#tradeProcurar" synonym="Procurar"/>
             <item name="Opções de usuário" action="click" target="#tradeUser" synonym="opções de uso"/>
         </div>
     </section>
@@ -112,7 +112,7 @@
             <h3 class="titulo"> Titulo </h3>
 
             <div class="font-weight-bold mt-5">
-                Questao <span class="questaoNumero"></span>
+                Questão <span class="questaoNumero"></span>
             </div>
             <div class="font-weight-bolder mt-5 textoQuestao"></div>
             <div class="mt-5 letrasQuestao"></div>
@@ -124,6 +124,9 @@
                     Próxima
                 </button>
             </div>
+            <button type="button" class="btn d-none" id="btnRepetirTarefa">
+                Repetir
+            </button>
         </section>
         <section id="resultadoAtividadeView" class="d-none">
             <h3>Resultado da atividade</h3>
@@ -143,9 +146,9 @@
          </div>
     </section>
     <section class="h-100 view d-none" id="procurarView">
-        <h3>
+        <h4>
             Qual atividade iremos realizar ?
-        </h3>
+        </h4>
         <div class="d-flex justify-content-center mt-5">
             <input type="text" id="codigoTarefaTxt" class="form-control w-75" placeholder="Insira o código da tarefa">
         </div>

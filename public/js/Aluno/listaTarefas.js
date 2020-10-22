@@ -2,6 +2,7 @@ import Storage from "../modules/storage/storage.js";
 import visible from "../modules/visible.js";
 import Ajax from "../modules/ajax.js";
 import blinder from "../modules/blinder/blinder.js";
+import eloquent from "../modules/blinder/eloquent.js";
 
 export default function () {
 
@@ -87,10 +88,17 @@ export default function () {
         $('#tarefaAtividadeView .textoQuestao').html(questao.enunciado)
         $('#tarefaAtividadeView .letrasQuestao').empty()
 
+        $('#listaViewBlinder').empty().html('')
+
         for (let i in questao) {
-            if(i.startsWith('alternativa') && questao[i])
+            if(i.startsWith('alternativa') && questao[i]) {
                 criaOpcaoResposta(i, questao[i], questao)
+            }
         }
+
+        $('#listaViewBlinder').append('<item name="Repetir Questão" action="click" target="#btnRepetirTarefa" synonym="Repetir"></item>')
+        blinder.eraseComponent('#atividadesView')
+            .registerComponent('#atividadesView')
 
         tarefa.atual = number
         Storage.save('tarefaAtual', tarefa)
@@ -102,6 +110,7 @@ export default function () {
         if(number == tarefa.questoes.length - 1)
             $('#btnProximaTarefa').html('Enviar')
 
+        lerQuestao()
         callbackOpcaoClickada()
     }
 
@@ -115,11 +124,18 @@ export default function () {
         html += '<label class="custom-control-label" for="Opcao'+letra+'">' + letra +') <span class="ml-3">'+ resposta +'</span></label>'
         html += '</div>'
         $('#tarefaAtividadeView .letrasQuestao').append(html)
+        $('#listaViewBlinder').append(
+            '<item name="'+resposta+'" action="check" value="true" target="#Opcao'+letra+'" synonym="Letra '+letra+'" pre-talk="Letra '+letra+', com valor: '+resposta+', marcada !"></item>'
+        )
     }
 
     function callbackOpcaoClickada(){
-        $('#tarefaAtividadeView .letrasQuestao input').on('click', function() {
+        $('#tarefaAtividadeView .letrasQuestao input').on('click changed', function() {
             visible.load('btnProximaTarefa')
+
+            $('#listaViewBlinder').append('<item name="Próxima questão" action="click" target="#btnProximaTarefa" synonym="Próxima"></item>')
+            blinder.eraseComponent('#atividadesView')
+                .registerComponent('#atividadesView')
         })
     }
 
@@ -174,5 +190,16 @@ export default function () {
         visible.retain('resultadoAtividadeView').load('mainAtividadeView')
         $('#tradeAtividade').click()
     })
+
+    function lerQuestao() {
+        eloquent.speak('Questão ' + $('#tarefaAtividadeView .questaoNumero').html())
+        const text = $('#tarefaAtividadeView .textoQuestao').html().replaceAll('-', 'menos')
+        eloquent.speak(text)
+        $('#tarefaAtividadeView .letrasQuestao div').each(function() {
+            eloquent.speak('Letra: ' + $(this).find('label').text())
+        })
+    }
+
+    $('#btnRepetirTarefa').on('click', lerQuestao)
 
 }

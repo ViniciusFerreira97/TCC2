@@ -38,6 +38,15 @@ export default class eloquent {
     static speak(text) {
         let speakable = eloquent.stripHtml(text);
         let speaking = new SpeechSynthesisUtterance(speakable);
+
+        speaking.onstart = function() {
+            window.speechSynthesis.resume();
+        };
+
+        speaking.onend = function() {
+            window.speechSynthesis.resume();
+        };
+
         speaking.lang = eloquent.lang;
         speechSynthesis.speak(speaking);
         return eloquent;

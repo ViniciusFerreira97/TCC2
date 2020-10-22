@@ -10,7 +10,7 @@ export default function () {
         Ajax.setType('GET').setUrl('atividade/procurar/' + codigo)
             .send(response => {
                 if(response.codigo === 200) {
-                    $('#procurarViewBlinder').append('<item name="Adicionar Atividade" action="click" target="#btnAdicionarTarefa"></item>')
+                    $('#procurarViewBlinder').append('<item name="Adicionar Atividade" action="click" target="#btnAdicionarTarefa" synonym="Adicionar"></item>')
                     blinder.eraseComponent('#procurarView').registerComponent('#procurarView')
 
                     $('#tarefaNaoEncontradaPesquisa').hide()
@@ -47,7 +47,7 @@ export default function () {
                     user.tarefas.push(response.mensagem)
                     Storage.save('user', user)
 
-                    visible.comunicate('Tarefa adicionada.')
+                    visible.comunicate('Atividade adicionada.')
                     visible.retain('tarefaProcurada')
                 }
         });

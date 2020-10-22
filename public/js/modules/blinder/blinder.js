@@ -14,6 +14,7 @@ export default class blinder {
 
     static globalComponents = {
         'Opções': 'readComponents',
+        'Comandos': 'readComponents',
     };
 
     static registerComponent(query) {
@@ -97,6 +98,10 @@ export default class blinder {
         elements.each(function () {
             let key = $(this).attr('id');
             if (blinder.temporaryKeys != undefined && blinder.temporaryKeys[key] != undefined) {
+                blinder.temporaryKeys[key].map((item) => {
+                    const read = item.readable
+                    blinder.components[read] = undefined;
+                })
                 blinder.temporaryKeys[key] = undefined;
                 Keeper.erase(key);
             }
@@ -145,6 +150,9 @@ export default class blinder {
         let pretext = text.split(' ')[0].toLowerCase();
         let postext = text.replace(pretext+' ','').toLowerCase();
         for(let i in blinder.components){
+            if(blinder.components[i] == undefined)
+                continue
+
             let synonym = undefined;
 
             if(blinder.components[i].synonym != undefined)
@@ -184,7 +192,7 @@ export default class blinder {
             }
             Eloquent.stopListenning(null)
         }
-        if(blinder.components[i].talk !== undefined && postext !== null){
+        if(blinder.components[i] && blinder.components[i].talk !== undefined && postext !== null){
             const speaking = blinder.components[i].talk.replaceAll('[[talk]]', postext)
             Eloquent.speak(speaking);
         }
@@ -199,7 +207,11 @@ export default class blinder {
         if(Object.keys(blinder.components).length) {
             Eloquent.speak('São opções de comando:');
             for(let i in blinder.components){
+                if(blinder.components[i] === undefined)
+                    continue
+
                 Eloquent.speak(i);
+
                 if(blinder.components[i].alt != undefined)
                     Eloquent.speak(blinder.components[i].alt);
             }
