@@ -28,13 +28,13 @@ $(document).ready(function (){
     procurarTarefa()
     User()
 
-    visible.load('menuView')
     const view = Storage.get('view')
     const viewAble = views.includes(view) ? view : 'homeView'
     $('#' + menuView[viewAble]).click()
+    visible.load('menuView')
 
     if(viewAble == 'homeView')
-        Eloquent.speak('Seja bem vindo ao iVision')
+        Eloquent.speak('Seja bem vindo ao aiVision')
 
     $('.userName').html(Storage.get('user').nomeUsuario)
 

@@ -1,4 +1,5 @@
 import View from "../modules/view.js";
+import eloquent from "../modules/blinder/eloquent.js";
 
 export default function () {
 
@@ -17,9 +18,11 @@ export default function () {
 
     $('#tradeAtividade').on('click', function () {
         View.tradeView('atividadesView');
+        eloquent.speak('Historico de atividades carregados.')
     });
 
     $('#tradeProcurar').on('click', function () {
         View.tradeView('procurarView');
+        eloquent.speak('Qual atividade iremos realizar ?')
     });
 }

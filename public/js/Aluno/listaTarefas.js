@@ -1,6 +1,7 @@
 import Storage from "../modules/storage/storage.js";
 import visible from "../modules/visible.js";
 import Ajax from "../modules/ajax.js";
+import blinder from "../modules/blinder/blinder.js";
 
 export default function () {
 
@@ -15,13 +16,14 @@ export default function () {
             visible.retain('listaTarefasVazio');
 
             loadClickEscolhaTarefa();
+            blinder.eraseComponent('#atividadesView').registerComponent('#atividadesView')
         } else {
             visible.load('listaTarefasVazio');
         }
     })
 
     function criaListItem (item) {
-        let html = '<li class="list-group-item" tarefa="'+item.atividade.cd_atividade+'">';
+        let html = '<li class="list-group-item" tarefa="'+item.atividade.cd_atividade+'" id="atv'+item.atividade.cd_atividade+'">';
 
         switch (item.status) {
             case 1:
@@ -41,6 +43,10 @@ export default function () {
 
         html += item.atividade.titulo
         html += '</li>'
+
+        const target = '#atv'+item.atividade.cd_atividade
+        const name = 'Atividade ' + item.atividade.titulo
+        $('#listaViewBlinder').append('<item name="'+name+'" action="click" target="'+target+'"></item>')
         $('#listaTarefas').append(html)
     }
 

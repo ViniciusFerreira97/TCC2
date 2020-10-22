@@ -10,6 +10,9 @@ export default function () {
         Ajax.setType('GET').setUrl('atividade/procurar/' + codigo)
             .send(response => {
                 if(response.codigo === 200) {
+                    $('#procurarViewBlinder').append('<item name="Adicionar Atividade" action="click" target="#btnAdicionarTarefa"></item>')
+                    blinder.eraseComponent('#procurarView').registerComponent('#procurarView')
+
                     $('#tarefaNaoEncontradaPesquisa').hide()
                     const data = format.data(response.mensagem.data_maxima)
                     $('#criadorTarefaPesquisada').html('Marcus da Silva')

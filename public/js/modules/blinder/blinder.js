@@ -9,7 +9,7 @@ export default class blinder {
     static enabled = false;
 
     static blinderActions = [
-        'click', 'insert', 'message'
+        'check', 'click', 'insert', 'message'
     ];
 
     static globalComponents = {
@@ -101,6 +101,8 @@ export default class blinder {
                 Keeper.erase(key);
             }
         });
+
+        return blinder
     }
 
     static findSelfComponent(element) {
@@ -110,26 +112,27 @@ export default class blinder {
             return $(element).find('.' + blinder.tagClass);
     }
 
+    static callback(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        if (Eloquent.listenning) {
+            Eloquent.stopListenning(function (text) {
+                blinder.processEloquent(text);
+            });
+        } else {
+            Eloquent.startListenning();
+        }
+    }
+
     static handle() {
         if(blinder.components === undefined){
             blinder.reset();
             blinder.accessibility = storage.get('accessibility')
         }
-        let callback = function (e) {
-            e.stopPropagation();
-            e.preventDefault();
-            if (Eloquent.listenning) {
-                Eloquent.stopListenning(function (text) {
-                    blinder.processEloquent(text);
-                });
-            } else {
-                Eloquent.startListenning();
-            }
-        }
         if (blinder.accessibility && !blinder.enabled) {
-            document.addEventListener("click", callback, true);
+            document.addEventListener("click", blinder.callback, true);
         } else if (!blinder.accessibility) {
-            document.removeEventListener('click', callback, true);
+            document.removeEventListener('click', blinder.callback, true);
         }
     }
 
@@ -170,15 +173,20 @@ export default class blinder {
             let target = blinder.components[i].target;
             switch (action) {
                 case 'click':
-                    $(target).click();
+                    $(target).trigger('click');
                     break;
                 case 'insert':
                     $(target).val(postext).focus().trigger('changed');
                     break;
+                case 'check':
+                    $(target).prop('checked', blinder.components[i].value == 'true').trigger('changed')
+                    break;
             }
+            Eloquent.stopListenning(null)
         }
-        if(blinder.components[i].talk !== undefined){
-            Eloquent.speak(blinder.components[i].talk);
+        if(blinder.components[i].talk !== undefined && postext !== null){
+            const speaking = blinder.components[i].talk.replaceAll('[[talk]]', postext)
+            Eloquent.speak(speaking);
         }
     }
 

@@ -124,6 +124,11 @@ $(document).ready(function () {
         $(this).val(value.replaceAll(' ', ''))
     })
 
+    $('#senhaText').on('changed', function () {
+        const value = $(this).val()
+        $(this).val(value.replaceAll(' ', ''))
+    })
+
     $('#cadastrarLink').on('click', function () {
         View.tradeView('cadastroView');
     });

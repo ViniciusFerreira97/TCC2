@@ -4,7 +4,6 @@
     <title>iVision</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="manifest" href="/manifest.webmanifest"/>
     <link rel="icon" type="image/png" href="/images/logo/oOriginal.png"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -48,8 +47,8 @@
     </div>
     <section class="view" id="menuView">
         <div class="blinderItem" id="menuAlunoBlinder">
-            <item name="Historico de Atividade" action="click" target="#tradeAtividade"/>
-            <item name="Procurar Atividade" action="click" target="#tradeProcurar"/>
+            <item name="Histórico de Atividade" action="click" target="#tradeAtividade" synonym="histórico de"/>
+            <item name="Procurar Atividade" action="click" talk="Qual tarefa iremos realizar ?" target="#tradeProcurar" synonym="Pesquisar Atividade"/>
             <item name="Opções de usuário" action="click" target="#tradeUser" synonym="opções de uso"/>
         </div>
     </section>
@@ -140,10 +139,12 @@
                 Voltar
             </button>
         </section>
+         <div class="blinderItem" id="listaViewBlinder">
+         </div>
     </section>
     <section class="h-100 view d-none" id="procurarView">
         <h3>
-            Qual tarefa iremos realizar ?
+            Qual atividade iremos realizar ?
         </h3>
         <div class="d-flex justify-content-center mt-5">
             <input type="text" id="codigoTarefaTxt" class="form-control w-75" placeholder="Insira o código da tarefa">
@@ -171,9 +172,13 @@
                 </section>
             </div>
             <button type="button" class="btn btn-pink mt-5" id="btnAdicionarTarefa">
-                Adicionar Tarefa
+                Adicionar Atividade
             </button>
         </section>
+        <div class="blinderItem" id="procurarViewBlinder">
+            <item name="Código" action="insert" value="" talk="Código inserido: [[talk]]" target="#codigoTarefaTxt"></item>
+            <item name="Pesquisar" action="click" target="#btnPesquisarTarefa"></item>
+        </div>
     </section>
     <section class="h-100 d-none view" id="userView">
         <div>
@@ -190,6 +195,10 @@
         </div>
         <div class="align-text-bottom mt-5">
             <button type="button" class="btn btn-pink" id="btnSair">Sair</button>
+        </div>
+        <div class="blinderItem" id="loginViewBlinder">
+            <item name="Desativar acessibilidade" action="check" value="false" talk="Desativando acessibilidade" target="#checkAcessibilidade"/>
+            <item name="Sair" action="click" talk="Saindo do sistema" target="#btnSair"/>
         </div>
     </section>
 </main>
@@ -224,6 +233,5 @@
 <script type="text/javascript" src="/mdb/js/popper.min.js"></script>
 <script src="https://kit.fontawesome.com/7d3e7301a3.js" crossorigin="anonymous"></script>
 
-<script src="/js/worker_register.js"></script>
 <script type="module" src="/js/Aluno/main.js"></script>
 </html>

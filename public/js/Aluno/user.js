@@ -13,7 +13,7 @@ export default function () {
         $("#checkAcessibilidade").prop( "checked", active );
     })
 
-    $('#checkAcessibilidade').on('click', function () {
+    $('#checkAcessibilidade').on('click changed', function () {
         const accessibility = $(this).is(':checked')
         Blinder.accessibility = accessibility
         Storage.save('accessibility', accessibility)

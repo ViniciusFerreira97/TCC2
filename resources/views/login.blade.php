@@ -4,7 +4,6 @@
     <title>iVision</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="manifest" href="/manifest.webmanifest"/>
     <link rel="icon" type="image/png" href="/images/logo/oOriginal.png"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -51,7 +50,7 @@
             </div>
         </div>
     </div>
-    <div class="row pr-3 pl-5">
+    <div class="row pr-3 pl-5 d-none">
         <div class="col">
             <a href="#" id="esqueciSenhaLink">Esqueceu a senha?</a>
         </div>
@@ -65,11 +64,11 @@
         </div>
     </div>
     <div class="blinderItem" id="loginViewBlinder">
-        <item name="E-mail" action="insert" value="" target="#loginText"/>
-        <item name="Senha" action="insert" value="" target="#senhaText"/>
+        <item name="E-mail" action="insert" talk="Email inserido: [[talk]]" value="" target="#loginText"/>
+        <item name="Senha" action="insert" talk="Senha inserida: [[talk]]" value="" target="#senhaText"/>
         <item name="Entrar" action="click" target="#btnEntrar"/>
-        <item name="Esqueci minha senha" action="click" target="#esqueciSenhaLink" talk="Menu de Esqueci minha senha disponível."/>
-        <item name="Cadastrar-me" action="click" target="#cadastrarLink" synonym="Cadastrar"/>
+        <!-- <item name="Esqueci minha senha" action="click" target="#esqueciSenhaLink" talk="Menu de Esqueci minha senha disponível."/>
+        <item name="Cadastrar-me" action="click" target="#cadastrarLink" synonym="Cadastrar"/> -->
     </div>
 </section>
 
@@ -153,7 +152,7 @@
     </div>
 
     <div class="blinderItem" id="esqueciViewBlinder">
-        <item name="E-mail" action="insert" value="{{}}" target="#loginEsqueci"/>
+        <item name="E-mail" action="insert" value="" target="#loginEsqueci"/>
         <item name="Voltar" action="click" target=".linkVoltarLogin" talk="Menu de Login disponível."/>
         <item name="Cadastrar" action="click" target="#btnRecuperarSenha"/>
     </div>
@@ -196,7 +195,6 @@
 <script type="text/javascript" src="/mdb/js/popper.min.js"></script>
 <script src="https://kit.fontawesome.com/7d3e7301a3.js" crossorigin="anonymous"></script>
 
-<script src="/js/worker_register.js"></script>
 <script type="module" src="/js/main.js"></script>
 <script type="module" src="/js/login.js"></script>
 </html>

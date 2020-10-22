@@ -17,11 +17,11 @@ Route::get('/', function () {
 });
 
 Route::get('/aluno', function () {
-    return view('aluno.homeAluno');
+    return view('Aluno.homeAluno');
 });
 
 Route::get('/professor', function () {
-    return view('professor.homeProfessor');
+    return view('Professor.homeProfessor');
 });
 
 Route::get('/login', function () {
