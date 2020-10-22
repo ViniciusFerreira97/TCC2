@@ -6,7 +6,6 @@ import Storage from "./modules/storage/storage.js";
 import Eloquent from "./modules/blinder/eloquent.js";
 
 $(document).ready(function () {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false });
     let googleJacu = false
     let ouvirPrimeiroLogin = false
     let posAudicaoPrimeiroLogin = false
