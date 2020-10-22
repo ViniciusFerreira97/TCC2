@@ -20,12 +20,14 @@ class AtividadesController extends Controller
                 'tituloAtividade' => 'required',
                 'descricaoAtividade' => 'required',
                 'dataAtividade' => 'required',
-                'tempoAtividade' => 'required'
+                'tempoAtividade' => 'required',
+                'codigoUsuario' => 'required'
             ])->setAttributeNames([
                 'tituloAtividade' => 'Título da atividade',
                 'descricaoAtividade' => 'Descrição da atividade',
                 'dataAtividade' => 'Data da atividade',
-                'tempoAtividade' => 'Tempo da atividade'
+                'tempoAtividade' => 'Tempo da atividade',
+                'codigoUsuario' => 'Código do Usuário'
             ]);
             if ($validacao->fails()) {
                 return app(ResponseController::class)->retornaJson(401, $validacao->messages()->all(), false);
@@ -42,6 +44,7 @@ class AtividadesController extends Controller
             $atividade->descricao = $request->descricaoAtividade;
             $atividade->data_maxima = Carbon::createFromFormat('d/m/Y', $request->dataAtividade)->format('Y-m-d');
             $atividade->tempo = $request->tempoAtividade;
+            $atividade->cd_usuario = $request->codigoUsuario;
             $atividade->save();
             return app(ResponseController::class)->retornaJson(200, $atividade, null);
         } catch (\Throwable $th) {
@@ -93,15 +96,19 @@ class AtividadesController extends Controller
         return app(ResponseController::class)->retornaJson(200, $questao, null);
     }
 
-    public function listarAtividades($codigoAtividade){
+    public function listarAtividades($codigoUsuario, $codigoAtividade){
         try {
+            if(!$codigoUsuario)
+            {
+                return app(ResponseController::class)->retornaJson(500, "Erro interno ao processar sua solicitação.", null);
+            }
             if($codigoAtividade != 0)
             {
-                $atividades = Atividade::where('cd_atividade', $codigoAtividade)->get();
+                $atividades = Atividade::where('cd_atividade', $codigoAtividade)->where('cd_usuario',$codigoUsuario)->get();
             }
             else
             {
-                $atividades = Atividade::get();
+                $atividades = Atividade::where('cd_usuario',$codigoUsuario)->get();
             }
             return app(ResponseController::class)->retornaJson(200, $atividades, null);
         } catch (\Throwable $th) {

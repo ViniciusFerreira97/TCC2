@@ -2,8 +2,10 @@ import Ajax from "../modules/ajax.js";
 import View from "../modules/view.js";
 import Eloquent from "../modules/blinder/eloquent.js";
 import Blinder from "../modules/blinder/blinder.js";
+import Storage from "../modules/storage/storage.js";
 
 var codigoAtividade = null;
+const user = Storage.get('user');
 
 $(document).ready(function($){
     Blinder.handle();
@@ -17,13 +19,68 @@ $(document).ready(function($){
         View.tradeView('viewNovaAtividade');
     });
 
+    $('#logoHomeClick').on('click',function(){
+        View.tradeView('homeProfessor');
+    });
+
     $('#btnVoltarCadastro').on('click',function(){
         View.tradeView('viewNovaAtividade');
     });
 
+    function dadosHome()
+    {
+        
+        Ajax.setType('GET').setUrl(`home/dados/listar/${user.codigoUsuario}`).send(function (data) {
+            if(data.codigo == 200)
+            {
+                let elemento = data.mensagem;
+                $('#homeAlunosCadastrados').html(elemento.contadorAlunos);
+                $('#homeProfessoresCadastrados').html(elemento.contadorProfessores);
+                $('#homeAtividadesCadastrados').html(elemento.contadorAtividades);
+                $('#homeQuestoesCadastradas').html(elemento.contadorQuestoes);
+                $('#homeQuestoesRespondidas').html(elemento.contadorRespostas);
+                //doughnut
+                var ctxD = document.getElementById("doughnutChart").getContext('2d');
+                var myLineChart = new Chart(ctxD, {
+                type: 'doughnut',
+                data: {
+                labels: ["Erros", "Acertos"],
+                datasets: [{
+                data: [elemento.errosGrafico, elemento.acertosGrafico],
+                backgroundColor: ["rgba(183, 28, 28, 0.8)", "rgba(27, 94, 32, 0.8)"],
+                hoverBackgroundColor: ["#d32f2f", "#2e7d32"]
+                }]
+                },
+                options: {
+                responsive: true
+                }
+                });
+
+                let realizadasGrafico2 = elemento.atividadesRealizadasGrafico > 0 ? elemento.atividadesRealizadasGrafico : 1;
+                let naoRealizadasGrafico2 = elemento.atividadesNaoRealizadasGrafico > 0 ? elemento.atividadesNaoRealizadasGrafico : 1;
+                var ctxD = document.getElementById("doughnutChart2").getContext('2d');
+                var myLineChart = new Chart(ctxD, {
+                type: 'doughnut',
+                data: {
+                labels: ["Realizadas", "Não Realizadas"],
+                datasets: [{
+                data: [realizadasGrafico2, naoRealizadasGrafico2],
+                backgroundColor: ["rgba(13, 71, 161, 0.8)", "rgba(0, 137, 123, 0.8)"],
+                hoverBackgroundColor: ["#1976d2", "#00695c"]
+                }]
+                },
+                options: {
+                responsive: true
+                }
+                });
+            }
+        });
+    }
+    dadosHome();
+
     function carregarTabela(){
         $('#tdInicialInsert').empty();
-        Ajax.setType('GET').setUrl(`atividade/listar/0`).send(function (data) {
+        Ajax.setType('GET').setUrl(`atividade/listar/${user.codigoUsuario}/0`).send(function (data) {
             if(data.codigo == 200)
             {
                 var htmlTabela = '';
@@ -52,6 +109,7 @@ $(document).ready(function($){
             'descricaoAtividade': $('#inputDescricao').val(),
             'dataAtividade': $('#inputData').val(),
             'tempoAtividade': $('#inputTempo').val(),
+            'codigoUsuario': user.codigoUsuario
         };
         Ajax.setAttributes(attributes).setUrl('atividade/criar').send(function (data) {
             if(data.codigo == 200)

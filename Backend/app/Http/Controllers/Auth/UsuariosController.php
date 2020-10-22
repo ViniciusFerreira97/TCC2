@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Usuarios;
 use Hash;
 use App\Http\Controllers\ResponseController;
+use DB;
 
 
 class UsuariosController extends Controller
@@ -211,5 +212,41 @@ class UsuariosController extends Controller
         $rlUsuarioAtividade->where('cd_usuario', $request->cd_usuario)
             ->where('cd_atividade', $request->cd_atividade);
         return $rlUsuarioAtividade->update();
+    }
+
+    public function listarHomeProfessor($codigoUsuario)
+    {
+        $data = [];
+        $data['contadorAtividades'] = Atividade::where('cd_usuario', $codigoUsuario)->count();
+        $data['contadorQuestoes'] = Atividade::join('rl_atividade_questao', 'rl_atividade_questao.cd_atividade', '=', 'tb_atividades.cd_atividade')
+                                                ->where('tb_atividades.cd_usuario', $codigoUsuario)->count();
+        $data['contadorRespostas'] = Atividade::join('rl_atividade_questao', 'rl_atividade_questao.cd_atividade', '=', 'tb_atividades.cd_atividade')
+                                                ->join('rl_usuario_questao', 'rl_usuario_questao.cd_atividade_questao', '=', 'rl_atividade_questao.cd_atividade_questao')
+                                                ->where('tb_atividades.cd_usuario', $codigoUsuario)->count();
+        $data['contadorProfessores'] = Usuarios::where('cd_tipo_usuario', 2)->count();
+        $data['contadorAlunos'] = Usuarios::where('cd_tipo_usuario', 1)->count();
+        $errosXacertos = Atividade::select([
+            DB::raw('sum(case when rl_usuario_questao.flg_correto = 1 then 1 else 0 end) as acertos'),
+            DB::raw('sum(case when rl_usuario_questao.flg_correto != 1 then 1 else 0 end) as erros')
+        ])
+        ->join('rl_atividade_questao', 'rl_atividade_questao.cd_atividade', '=', 'tb_atividades.cd_atividade')
+        ->join('rl_usuario_questao', 'rl_usuario_questao.cd_atividade_questao', '=', 'rl_atividade_questao.cd_atividade_questao')
+        ->where('tb_atividades.cd_usuario', $codigoUsuario)->get();
+        if(sizeof($errosXacertos) > 0)
+        {
+            $data['acertosGrafico'] = $errosXacertos[0]->acertos != null ? $errosXacertos[0]->acertos != null : 1 ;
+            $data['errosGrafico'] = $errosXacertos[0]->erros != null ? $errosXacertos[0]->erros : 1;
+        }
+        else
+        {
+            $data['acertosGrafico'] = 1;
+            $data['errosGrafico'] = 1;
+        }
+
+        $atividadesRealizadas = Atividade::join('rl_usuario_atividade', 'rl_usuario_atividade.cd_atividade', '=', 'tb_atividades.cd_atividade')
+        ->where('tb_atividades.cd_usuario', $codigoUsuario)->distinct()->pluck('tb_atividades.cd_atividade');
+        $data['atividadesRealizadasGrafico'] = count($atividadesRealizadas);
+        $data['atividadesNaoRealizadasGrafico'] = Atividade::where('cd_usuario', $codigoUsuario)->whereNotIn('cd_atividade', $atividadesRealizadas)->count();
+        return app(ResponseController::class)->retornaJson(200, $data, null);
     }
 }

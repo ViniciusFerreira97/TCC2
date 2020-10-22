@@ -25,9 +25,10 @@ Route::post('/usuario/adicionar/tarefa',  'Auth\UsuariosController@adicionarTare
 Route::post('/usuario/responder/tarefa',  'Auth\UsuariosController@responderTarefa');
 Route::post('/usuario/finalizar/tarefa',  'Auth\UsuariosController@finalizaTarefa');
 Route::post('/atividade/criar',  'AtividadesController@cadastrarAtividade');
-Route::get('/atividade/listar/{codigoAtividade}',  'AtividadesController@listarAtividades');
+Route::get('/atividade/listar/{codigoUsuario}/{codigoAtividade}',  'AtividadesController@listarAtividades');
 Route::post('/atividade/editar',  'AtividadesController@apagarAtividade');
 Route::post('/atividade/editar',  'AtividadesController@apagarAtividade');
 Route::get('/dados/questao/listar/{codigoQuestao}',  'AtividadesController@listarDadosQuestao');
 Route::post('/atividade/questao/criar',  'AtividadesController@cadastrarQuestao');
 Route::get('/atividade/procurar/{id}',  'Auth\UsuariosController@procurarTarefa');
+Route::get('/home/dados/listar/{codigoUsuario}',  'Auth\UsuariosController@listarHomeProfessor');
