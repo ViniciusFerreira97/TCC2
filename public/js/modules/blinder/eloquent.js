@@ -29,6 +29,7 @@ export default class eloquent {
             eloquent.recognition.onresult = function (event) {
                 let text = event.results[0][0].transcript;
                 eloquent.listenningHistoric.push(text);
+                speechSynthesis.cancel();
                 eloquent.callback(text, event);
             };
         }

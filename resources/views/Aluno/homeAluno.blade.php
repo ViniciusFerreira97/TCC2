@@ -45,7 +45,7 @@
             </a>
         </div>
     </div>
-    <section class="view" id="menuView">
+    <section id="menuView">
         <div class="blinderItem" id="menuAlunoBlinder">
             <item name="Lista de Atividade" action="click" target="#tradeAtividade" synonym="Lista de"/>
             <item name="Procurar Atividade" action="click" talk="Qual tarefa iremos realizar ?" target="#tradeProcurar" synonym="Procurar"/>
@@ -88,7 +88,7 @@
                 <span class="p-2 rounded rgba-grey-slight mr-3">
                     <i class="fas fa-list"></i>
                 </span>
-                    Histórico de atividades
+                    Lista de atividades
                 </div>
             </div>
             <hr>
@@ -118,7 +118,7 @@
             <div class="mt-5 letrasQuestao"></div>
             <div class="mt-5 d-flex justify-content-around">
                 <button type="button" class="btn light-blue white-text d-none" id="btnVoltarTarefa">
-                    Voltar
+                    Anterior
                 </button>
                 <button type="button" class="btn btn-pink d-none" id="btnProximaTarefa">
                     Próxima

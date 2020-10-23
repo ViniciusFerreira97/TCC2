@@ -68,7 +68,7 @@ $(document).ready(function () {
     $('#firstLoginContent').on('click', function () {
         if(posAudicaoPrimeiroLogin) {
             Eloquent.stopListenning(text => {
-                const acessibilidade = text.toLowerCase() == 'sim' ? true : false
+                const acessibilidade = text.toLowerCase() == 'sim' || text.toLowerCase() == 'continuar' ? true : false
                 Blinder.accessibility = acessibilidade
                 Storage.save('accessibility', acessibilidade)
                 $('#firstLoginContent').fadeOut('slow')

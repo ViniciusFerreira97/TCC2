@@ -102,13 +102,29 @@ export default function () {
 
         tarefa.atual = number
         Storage.save('tarefaAtual', tarefa)
-        if($('[name="groupOfDefaultRadios"]:checked').length == 0)
+        if($('[name="groupOfDefaultRadios"]:checked').length == 0) {
             visible.retain('btnProximaTarefa')
-        else
+        }
+        else {
             visible.load('btnProximaTarefa')
+
+            $('#listaViewBlinder').append('<item name="Próxima questão" action="click" target="#btnProximaTarefa" synonym="Próxima"></item>')
+            blinder.eraseComponent('#atividadesView')
+                .registerComponent('#atividadesView')
+        }
 
         if(number == tarefa.questoes.length - 1)
             $('#btnProximaTarefa').html('Enviar')
+
+        if(number != 0) {
+            $('#listaViewBlinder').append('<item name="Questão anterior" action="click" target="#btnVoltarTarefa" synonym="Anterior" id="btnAnteriorBlinder"></item>')
+            blinder.eraseComponent('#atividadesView')
+                .registerComponent('#atividadesView')
+        } else {
+            $('#btnAnteriorBlinder').remove()
+            blinder.eraseComponent('#atividadesView')
+                .registerComponent('#atividadesView')
+        }
 
         lerQuestao()
         callbackOpcaoClickada()
@@ -144,6 +160,7 @@ export default function () {
         const tarefa = Storage.get('tarefaAtual')
         tarefa.questoes[tarefa.atual].resposta = resposta
         Storage.save('tarefaAtual', tarefa)
+
         loadQuestao(tarefa.atual + 1)
     })
 
@@ -183,6 +200,7 @@ export default function () {
 
         $('#resultadoAtividadeView .text-success').html(acertos)
         $('#resultadoAtividadeView .text-danger').html(total - acertos)
+        eloquent.speak('Foram: ' + acertos + ' questão corretas. E : ' + total - acertos + ' questão erradas')
         visible.retain('tarefaAtividadeView').load('resultadoAtividadeView')
     }
 
