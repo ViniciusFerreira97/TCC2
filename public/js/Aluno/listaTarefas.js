@@ -209,12 +209,15 @@ export default function () {
         $('#tradeAtividade').click()
     })
 
-    function lerQuestao() {
+    async function lerQuestao() {
         eloquent.speak('Questão ' + $('#tarefaAtividadeView .questaoNumero').html())
         const text = $('#tarefaAtividadeView .textoQuestao').html().replaceAll('-', 'menos')
-        eloquent.speak(text)
+        eloquent.speakText(text)
+        await setTimeout(() => {
+            window.speechSynthesis.resume();
+        }, 1000)
         $('#tarefaAtividadeView .letrasQuestao div').each(function() {
-            eloquent.speak('Letra: ' + $(this).find('label').text())
+            eloquent.speakText('Letra: ' + $(this).find('label').text())
         })
     }
 
